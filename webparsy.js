@@ -14,6 +14,7 @@ let def = null
  * @param {Object} program Commander's original object
  */
 const init = async (program) => {
+  let error
   let exitCode = 0
 
   let output = {}
@@ -70,14 +71,19 @@ const init = async (program) => {
     }
   }
   catch (ex) {
-    console.error(ex)
+    error = ex
     exitCode = 5
   }
-  finally {
+  finally { // Always gracefylly close the browser
     await browser.close()
   }
 
+  if (exitCode) {
+    fatal(error)
+  }
+
   if (program.rawArgs) {
+    console.log('Result:\n')
     console.log(JSON.stringify(output, ' ', 2))
   }
   else {
