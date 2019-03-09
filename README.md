@@ -146,7 +146,7 @@ This can be:
 
 ### goto
 
-URL to navigate page to. The url should include scheme, e.g. https://.
+URL to navigate page to. The url should include scheme, e.g. https://. [example]()https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml
 
 ```yaml
 - goto: https://example.com
@@ -154,7 +154,7 @@ URL to navigate page to. The url should include scheme, e.g. https://.
 
 ## goBack
 
-Navigate to the previous page in history.
+Navigate to the previous page in history. [example]()https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml
 
 ```yaml
 - goBack
@@ -162,7 +162,8 @@ Navigate to the previous page in history.
 
 ## screenshot
 
-Takes an screenshot of the page. This triggers pupetteer's [page.screenshot](https://github.com/GoogleChrome/puppeteer/blob/v1.13.0/docs/api.md#pagescreenshotoptions)
+Takes an screenshot of the page. This triggers pupetteer's [page.screenshot](https://github.com/GoogleChrome/puppeteer/blob/v1.13.0/docs/api.md#pagescreenshotoptions).
+[example](https://github.com/joseconstela/webparsy/blob/master/example/screenshot.yml)
 
 ```yaml
 - screenshot:
