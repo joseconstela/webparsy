@@ -146,7 +146,7 @@ This can be:
 
 ### goto
 
-URL to navigate page to. The url should include scheme, e.g. https://. [example]()https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml
+URL to navigate page to. The url should include scheme, e.g. https://. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
 
 ```yaml
 - goto: https://example.com
@@ -154,7 +154,7 @@ URL to navigate page to. The url should include scheme, e.g. https://. [example]
 
 ## goBack
 
-Navigate to the previous page in history. [example]()https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml
+Navigate to the previous page in history. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
 
 ```yaml
 - goBack
@@ -182,7 +182,7 @@ Takes a pdf of the page. This triggers pupetteer's [page.pdf](https://github.com
 ## title
 
 Gets the title for the current page. If no output.as property is defined, the
-page's title will tbe returned as `{ title }`
+page's title will tbe returned as `{ title }`. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
 
 ```yaml
 - title
@@ -190,7 +190,7 @@ page's title will tbe returned as `{ title }`
 
 ## text
 
-Gets the text for a given CSS selector
+Gets the text for a given CSS selector. [example](https://github.com/joseconstela/webparsy/blob/master/example/_weather.yml)
 
 Example: 
 
@@ -204,7 +204,7 @@ Example:
 
 Gets the HTML code. If no `selector` specified, it returns the page's full HTML
 code. If no output.as property is defined, the result will tbe returned
-as `{ html }`
+as `{ html }`. [example](https://github.com/joseconstela/webparsy/blob/master/example/html.yml)
 
 Example: 
 
