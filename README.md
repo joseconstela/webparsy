@@ -238,7 +238,7 @@ Example:
 ## html
 
 Gets the HTML code. If no `selector` specified, it returns the page's full HTML
-code. If no output.as property is defined, the result will tbe returned
+code. If no output.as property is defined, the result will be returned
 as `{ html }`. [example](https://github.com/joseconstela/webparsy/blob/master/example/html.yml)
 
 Example: 
