@@ -19,7 +19,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
 ##### Table of Contents
 
 - [Overview](#overview)
-- [Browser config](#browserconfig)
+- [Browser config](#browser-config)
 - [Output](#output)
 - [Transform](#transform)
 - [Types](#types)
@@ -110,7 +110,7 @@ A possible example to grab your city's temperature could be:
 ## Transform
 
 When you extract texts from a web page, you might want to transform the data
-before returning it.
+before returning it. [example](https://github.com/joseconstela/webparsy/blob/master/example/transform.yml)
 
 You can use the following `- transform` methods:
 
@@ -121,6 +121,7 @@ You can use the following `- transform` methods:
 
 When extractring details from a page, you might want this to be returned in
 different formats, for example as a number in the example of grabing temperatures.
+[example](https://github.com/joseconstela/webparsy/blob/master/example/type.yml)
 
 You can use the following values for `- type`:
 
