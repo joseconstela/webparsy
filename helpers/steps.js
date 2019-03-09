@@ -1,4 +1,4 @@
-const debug = require('debug')('cholo:steps')
+const debug = require('debug')('webscrapy:steps')
 
 const error = require('./err').error
 const methods = require('./methods')

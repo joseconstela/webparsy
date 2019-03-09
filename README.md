@@ -1,6 +1,6 @@
 # WebParsy
 
-> WebParsy is a NodeJS library which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
+> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
 ```yaml
 jobs:
@@ -33,6 +33,43 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [html](#html) Return HTML code for the page or a DOM element.
 
 ## Overview
+
+You can use WebParsy either as cli from your terminal or as a NodeJS library.
+
+### Cli
+
+```bash
+$ webparsy my_yaml_file.yml
+```
+
+### Library
+
+```javascript
+const webparsy = require('webparsy')
+const parsingResult = await webparsy.init(options)
+```
+
+#### Methods:
+
+##### init(options)
+
+options:
+
+One of `yaml`, `file` or `string` is required.
+
+- `yaml`: The scraping task definition, built using [yaml npm module](https://www.npmjs.com/package/yaml)
+- `string`: The scraping task definition, as a plain string
+- `file`: The path for the file that stores the web parsing definition.
+
+Example:
+
+```javascript
+const webparsy = require('webparsy')
+const yaml = require('yaml')
+const parsingResults= await webparsy.init({
+  yaml: yaml.parse(userInput)
+})
+```
 
 ## Browser config
 

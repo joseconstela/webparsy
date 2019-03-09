@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const debug = require('debug')('cholo')
+const debug = require('debug')('webscrapy')
 
 const definition = require('./helpers/definition')
 const steps = require('./helpers/steps')
@@ -9,7 +9,7 @@ const fatal = require('./helpers/err').fatal
 let def = null
 
 /**
- * Initialize the cholo!
+ * Initialize the webscrapy!
  * 
  * @param {Object} program Commander's original object
  */
@@ -21,18 +21,23 @@ const init = async (program) => {
   // Get definition
 
   // File path specified from the cli
-  if (program.definitionFile) {
-    def = await definition.loadFile(program.definitionFile)
+  if (program.file) {
+    def = await definition.loadFile(program.file)
   }
 
   // YAML string
-  else if (program.definition) {
+  else if (program.string) {
+    def = await definition.loadString(program.string)
+  }
 
+  // YAML
+  else if (program.yaml) {
+    def = program.yaml
   }
 
   // No definition
   else {
-    if (program.rawArgs) fatal('No definition specified')
+    fatal('No definition specified')
   }
 
   await definition.validate(def)
@@ -72,12 +77,12 @@ const init = async (program) => {
     await browser.close()
   }
 
-  if (Object.keys(output)) {
+  if (program.rawArgs) {
     console.log(JSON.stringify(output, ' ', 2))
   }
-  
-  process.exit(exitCode)
-
+  else {
+    return output
+  }
 }
 
 module.exports.init = init

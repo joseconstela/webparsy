@@ -5,6 +5,16 @@ const yaml = require('yaml')
 const fatal = require('./err').fatal
 
 /**
+ * Return the yaml parsed for a given string
+ * 
+ * @param {string} str 
+ */
+const loadString = async (str) =>
+  yaml.parse(str)
+
+module.exports.loadString = loadString
+
+/**
  * Return the yaml parsed for a given file's contents
  * 
  * @param {string} file 
@@ -14,7 +24,7 @@ const loadFile = async (file) => {
     path.join(process.cwd(), file),
     'utf-8'
   )
-  return yaml.parse(defRaw)
+  return loadString(defRaw)
 }
 
 module.exports.loadFile = loadFile

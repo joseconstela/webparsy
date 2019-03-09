@@ -10,6 +10,6 @@ if (!program.args[0]) {
   process.exit(1)
 }
 
-program.definitionFile = program.args[0]
+program.file = program.args[0]
 
 require('./webparsy').init(program)
