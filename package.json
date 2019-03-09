@@ -1,16 +1,18 @@
 {
   "name": "webparsy",
   "version": "0.0.1",
-  "description": "Tideflow.io's agent",
+  "description": "WebParsy is a NodeJS library which allows to scrape websites using Puppeteer and YAML definitions",
   "main": "index.js",
   "keywords": [
     "cli-app",
     "cli",
-    "tideflow",
-    "command",
-    "execute",
-    "workflow",
-    "simple"
+    "web",
+    "puppeteer",
+    "cheerio",
+    "scraper",
+    "scraping",
+    "web scraping",
+    "web scraper"
   ],
   "scripts": {
     "test": "mocha"
