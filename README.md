@@ -2,14 +2,24 @@
 
 > WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
+_Build a PDF from Google's homepage and get Madrid's temperature._
 ```yaml
 jobs:
   main:
     steps:
-      - goto: https://example.com
+      - goto: https://google.com
       - pdf:
-          - path: file.pdf
+          - path: Google.pdf
           - format: A4
+      - goto: https://weather.com/es-ES/tiempo/hoy/l/SPXX0050:1:SP
+      - title
+      - text:
+        - selector: .h4.today_nowcard-location
+        - as: city
+      - text:
+        - selector: .today_nowcard-temp span
+        - type: number
+        - as: temp
 ```
 
 ---
