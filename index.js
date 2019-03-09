@@ -49,7 +49,7 @@ const init = async (program) => {
     width: browserOpts.width || 1200,
     height: browserOpts.height || 800,
     scaleFactor: browserOpts.scaleFactor || 1,
-    timeout: browserOpts.timeout || 90,
+    timeout: browserOpts.timeout || 30 * 1000,
     delay: browserOpts.delay || 0
   }
 
