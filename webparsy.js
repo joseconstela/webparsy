@@ -1,0 +1,83 @@
+const puppeteer = require('puppeteer')
+const debug = require('debug')('cholo')
+
+const definition = require('./helpers/definition')
+const steps = require('./helpers/steps')
+const fatal = require('./helpers/err').fatal
+
+// Host a copy of the definition file parsed using yaml's module
+let def = null
+
+/**
+ * Initialize the cholo!
+ * 
+ * @param {Object} program Commander's original object
+ */
+const init = async (program) => {
+  let exitCode = 0
+
+  let output = {}
+  
+  // Get definition
+
+  // File path specified from the cli
+  if (program.definitionFile) {
+    def = await definition.loadFile(program.definitionFile)
+  }
+
+  // YAML string
+  else if (program.definition) {
+
+  }
+
+  // No definition
+  else {
+    if (program.rawArgs) fatal('No definition specified')
+  }
+
+  await definition.validate(def)
+
+  const browserOpts = definition.cfg(def, 'main', 'browser') || {}
+
+  const options = {
+    width: browserOpts.width || 1200,
+    height: browserOpts.height || 800,
+    scaleFactor: browserOpts.scaleFactor || 1,
+    timeout: browserOpts.timeout || 90,
+    delay: browserOpts.delay || 0
+  }
+
+  debug(`Puppeteer options ${JSON.stringify(options)}`)
+
+  const browser = await puppeteer.launch(options)
+  debug('Browser launched')
+
+  const page = await browser.newPage()
+  debug('New page created')
+
+  const defSteps = definition.cfg(def, 'main', 'steps')
+  debug('Get definition steps')
+
+  try {
+    for await (defStep of defSteps) {
+      let stepResult = await steps.exec(defStep, page)
+      output = Object.assign({}, output, stepResult.result || {})
+    }
+  }
+  catch (ex) {
+    console.error(ex)
+    exitCode = 5
+  }
+  finally {
+    await browser.close()
+  }
+
+  if (Object.keys(output)) {
+    console.log(JSON.stringify(output, ' ', 2))
+  }
+  
+  process.exit(exitCode)
+
+}
+
+module.exports.init = init

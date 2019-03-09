@@ -1,0 +1,7 @@
+module.exports.goBack = require('./goBack')
+module.exports.goto = require('./goto')
+module.exports.html = require('./html')
+module.exports.pdf = require('./pdf')
+module.exports.screenshot = require('./screenshot')
+module.exports.text = require('./text')
+module.exports.title = require('./title')

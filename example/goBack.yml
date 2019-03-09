@@ -1,0 +1,8 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://ads.google.com/
+      - goto: https://google.com/
+      - goBack
+      - title
