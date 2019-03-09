@@ -27,6 +27,10 @@ _Build a PDF from Google's homepage and get Madrid's temperature._
 
 Don't panic. There are examples for all WebParsy features in the examples folder. This are as basic as possible to help you get started.
 
+<a href="https://www.patreon.com/joseconstela">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
 ##### Table of Contents
 
 - [Overview](#overview)
@@ -238,3 +242,7 @@ Example:
   - as: divHtml
   - selector: div
 ```
+
+## License
+
+MIT © [Jose Constela](https://joseconstela.com)
