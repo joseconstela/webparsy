@@ -2,7 +2,6 @@
 
 > WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
-_Build a PDF from Google's homepage and get Madrid's temperature._
 ```yaml
 jobs:
   main:
@@ -21,6 +20,8 @@ jobs:
         - type: number
         - as: temp
 ```
+
+_Build a PDF from Google's homepage and get Madrid's temperature._
 
 ---
 
@@ -134,7 +135,7 @@ A possible example to grab your city's temperature could be:
 ## Transform
 
 When you extract texts from a web page, you might want to transform the data
-before returning it. [example](https://github.com/joseconstela/webparsy/blob/master/example/transform.yml)
+before returning them. [example](https://github.com/joseconstela/webparsy/blob/master/example/transform.yml)
 
 You can use the following `- transform` methods:
 
@@ -143,7 +144,7 @@ You can use the following `- transform` methods:
 
 ## Types
 
-When extractring details from a page, you might want this to be returned in
+When extractring details from a page, you might want them to be returned in
 different formats, for example as a number in the example of grabing temperatures.
 [example](https://github.com/joseconstela/webparsy/blob/master/example/type.yml)
 
