@@ -14,4 +14,4 @@ if (!program.args[0]) {
 
 program.file = program.args[0]
 
-require('./webparsy').init(program)
+require('.').init(program)

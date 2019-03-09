@@ -38,15 +38,29 @@ You can use WebParsy either as cli from your terminal or as a NodeJS library.
 
 ### Cli
 
+*Install webparsy:*
 ```bash
-$ webparsy my_yaml_file.yml
+$ npm i webparsy -g
+```
+
+```bash
+$ webparsy example/_weather.yml
+Result:
+
+{
+  "title": "Madrid, España Pronóstico del tiempo y condiciones meteorológicas - The Weather Channel | Weather.com",
+  "city": "Madrid, España",
+  "temp": 18
+}
 ```
 
 ### Library
 
 ```javascript
 const webparsy = require('webparsy')
-const parsingResult = await webparsy.init(options)
+const parsingResult = await webparsy.init({
+  file: 'jobdefinition.yml'
+})
 ```
 
 #### Methods:
