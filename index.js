@@ -83,7 +83,6 @@ const init = async (program) => {
   }
 
   if (program.rawArgs) {
-    console.log('Result:\n')
     console.log(JSON.stringify(output, ' ', 2))
   }
   else {

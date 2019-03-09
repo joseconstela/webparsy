@@ -1,13 +1,24 @@
+/**
+ * Converts a value to the specified type
+ * 
+ * @param {string} value 
+ * @param {string} type 
+ * @param {*} defaultValue 
+ */
 const cast = (value, type, defaultValue) => {
   if (typeof value === 'undefined') return defaultValue || null
-  if (value == null) return null
+  if (value == null) return defaultValue
+
+  let r 
 
   switch (type || 'string') {
     case 'string':
-      return value.toString()
+      r = value.toString().trim()
+      if (r === '') r = defaultValue
+      return r
       break;
     case 'number':
-      let r = Number(value)
+      r = Number(value)
       return r ? r : Number(parseFloat(value)) || parseInt(value)
       break;
     case 'integer':
@@ -22,6 +33,15 @@ const cast = (value, type, defaultValue) => {
   }
 }
 
+module.exports.cast = cast
+
+/**
+ * Transforms a value 
+ * 
+ * @param {string} value 
+ * @param {string} type 
+ * @param {*} type 
+ */
 const transform = (value, type) => {
   if (!type) return value
 
@@ -39,6 +59,8 @@ const transform = (value, type) => {
       break;
   }
 }
+
+module.exports.transform = transform
 
 /**
  * 
