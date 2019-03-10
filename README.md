@@ -298,7 +298,7 @@ Examples:
 
 ```yaml
 - waitFor:
-   s elector: "#search-results"
+   selector: "#search-results"
 ```
 
 ```yaml
