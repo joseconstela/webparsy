@@ -5,18 +5,18 @@ jobs:
       - goto: https://weather.com/es-ES/tiempo/hoy/l/SPXX0050:1:SP
       - title
       - text:
-        - selector: .today_nowcard-temp span
-        - type: number
-        - as: temp_number
+          selector: .today_nowcard-temp span
+          type: number
+          as: temp_number
       - text:
-        - selector: .today_nowcard-temp span
-        - type: string
-        - as: temp_string
+          selector: .today_nowcard-temp span
+          type: string
+          as: temp_string
       - text:
-        - selector: .today_nowcard-temp span
-        - type: integer
-        - as: temp_integer
+          selector: .today_nowcard-temp span
+          type: integer
+          as: temp_integer
       - text:
-        - selector: .today_nowcard-temp span
-        - type: float
-        - as: temp_float
+          selector: .today_nowcard-temp span
+          type: float
+          as: temp_float

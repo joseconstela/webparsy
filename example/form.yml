@@ -1,0 +1,13 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://google.com/
+      - form:
+          elector: "#tsf"
+          submit: true
+          fill:
+            - selector: '[name="q"]'
+              value: test
+      - screenshot:
+          path: Google_search.png

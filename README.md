@@ -8,17 +8,17 @@ jobs:
     steps:
       - goto: https://google.com
       - pdf:
-          - path: Google.pdf
-          - format: A4
+          path: Google.pdf
+          format: A4
       - goto: https://weather.com/es-ES/tiempo/hoy/l/SPXX0050:1:SP
       - title
       - text:
-        - selector: .h4.today_nowcard-location
-        - as: city
+          selector: .h4.today_nowcard-location
+          as: city
       - text:
-        - selector: .today_nowcard-temp span
-        - type: number
-        - as: temp
+          selector: .today_nowcard-temp span
+          type: number
+          as: temp
 ```
 
 _Build a PDF from Google's homepage and get Madrid's temperature._
@@ -27,7 +27,7 @@ _Build a PDF from Google's homepage and get Madrid's temperature._
 
 Don't panic. There are examples for all WebParsy features in the examples folder. This are as basic as possible to help you get started.
 
-<div align="center">
+<div>
 	<p>
     <sup>Support my work,</sup>
 		<br>
@@ -46,12 +46,13 @@ Don't panic. There are examples for all WebParsy features in the examples folder
 - [Types](#types)
 - [Steps](#steps)
   * [goto](#goto) Navigate to an URL
-  * [goBack](#goBack) Navigate to the previous page in history.
+  * [goBack](#goBack) Navigate to the previous page in history
   * [screenshot](#screenshot) Takes an screenshot of the page
   * [pdf](#pdf) Takes a pdf of the page
   * [text](#text) Gets the text for a given CSS selector
   * [title](#title) Gets the title for the current page.
-  * [html](#html) Return HTML code for the page or a DOM element.
+  * [form](#form) Fill and submit forms
+  * [html](#html) Return HTML code for the page or a DOM element
 
 ## Overview
 
@@ -233,6 +234,21 @@ Example:
 - text:
   - selector: .user.name
   - as: userName
+```
+
+## form
+
+Fill and submit forms. [example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+
+Example: 
+
+```yaml
+- form:
+    elector: "#tsf"            # form selector
+    submit: true               # Submit after filling all details
+    fill:                      # array of inputs to fill
+      - selector: '[name="q"]' # input selector
+        value: test            # input value
 ```
 
 ## html

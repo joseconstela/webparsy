@@ -34,17 +34,6 @@ const exec = async (step, page) => {
   let parameters = step[methodName]
   debug(`Parameters ${JSON.stringify(parameters)}`)
   
-  /**
-   * - pdf:
-   *   - path: hn.pdd
-   *   - format: A4
-   */
-  if (Array.isArray(parameters)) {
-    let r = {}
-    parameters.map(p => Object.assign(r, p))
-    parameters = r
-  }
-
   if (usedMethod.puppeteer) {
     raw = parameters ? await page[methodName](parameters || {}) : await page[methodName]()
   } else if (usedMethod.process) {

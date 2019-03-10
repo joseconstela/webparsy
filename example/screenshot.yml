@@ -4,4 +4,4 @@ jobs:
     steps:
       - goto: https://github.com
       - screenshot:
-          - path: Github.png
+          path: Github.png

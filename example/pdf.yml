@@ -4,5 +4,5 @@ jobs:
     steps:
       - goto: https://google.com
       - pdf:
-          - path: Goole.pdf
-          - format: A4
+          path: Goole.pdf
+          format: A4
