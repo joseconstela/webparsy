@@ -19,10 +19,10 @@ jobs:
           fill:
             - selector: '#card01'
               value:
-                env: ABANCA_USERID
+                env: ABANCA_USERID      # export ABANCA_USERID
             - selector: '#pin_number'
               value:
-                env: ABANCA_PASSWORD
+                env: ABANCA_PASSWORD    # export ABANCA_PASSWORD
       - text:
           selector: '#ctl00_CuerpoPlaceHolder_tbAccounts_ctl01_AccountColor'
           as: money
