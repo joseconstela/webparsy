@@ -53,6 +53,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
+  * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ## Overview
 
@@ -178,7 +179,9 @@ This can be:
   * [pdf](#pdf) Takes a pdf of the page
   * [text](#text) Gets the text for a given CSS selector
   * [title](#title) Gets the title for the current page.
+  * [form](#form) Fill and submit forms.
   * [html](#html) Return HTML code for the page or a DOM element.
+  * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ### goto
 
@@ -263,6 +266,23 @@ Example:
 - html
   - as: divHtml
   - selector: div
+```
+
+## waitFor
+
+Wait for specified CSS selectors, on an specific amount of time before
+continuing [example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+
+Examples: 
+
+```yaml
+- waitFor:
+    elector: "#search-results"
+```
+
+```yaml
+- waitFor:
+    time: 1000 # Time in milliseconds
 ```
 
 ## License
