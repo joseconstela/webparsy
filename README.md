@@ -247,7 +247,7 @@ Example:
 
 ```yaml
 - form:
-    elector: "#tsf"            # form selector
+    selector: "#tsf"            # form selector
     submit: true               # Submit after filling all details
     fill:                      # array of inputs to fill
       - selector: '[name="q"]' # input selector
@@ -277,7 +277,7 @@ Examples:
 
 ```yaml
 - waitFor:
-    elector: "#search-results"
+   s elector: "#search-results"
 ```
 
 ```yaml
