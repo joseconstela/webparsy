@@ -39,6 +39,16 @@ describe('parser', function () {
       let v = parser.cast('1.1a', 'integer') 
       expect(v).to.equal(1)
     })
+
+    it('should return float from string with comma for thousands', function () {
+      let v = parser.cast('1,123,123.123', 'fcd') 
+      expect(v).to.equal(1123123.123)
+    })
+
+    it('should return float from string with dot for thousands', function () {
+      let v = parser.cast('1.123.123,123', 'fdc') 
+      expect(v).to.equal(1123123.123)
+    })
   })
 
   describe('transform', function () {

@@ -27,6 +27,12 @@ const cast = (value, type, defaultValue) => {
     case 'float':
       return parseFloat(value)
       break;
+    case 'fdc':
+      return parseFloat(value.replace(/\./g, '').replace(/\,/g, '.'))
+      break;
+    case 'fcd':
+      return parseFloat(value.replace(/\,/g, ''))
+      break;
     default:
       return value
       break;
