@@ -1,7 +1,3 @@
-const parser = require('../parser')
-
-const cheerio = require('../cheerio')
-
 const schema = {
   method: 'form',
   process: async (page, params, html) => {
@@ -11,7 +7,8 @@ const schema = {
       }, { params, field })
     })
     if (params.submit) {
-      await page.$eval(params.selector || 'form', form => form.submit());
+      await page.$eval(params.selector || 'form', form => form.submit())
+      await page.waitForNavigation()
     }
   }
 }

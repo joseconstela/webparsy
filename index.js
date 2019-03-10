@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const debug = require('debug')('webscrapy')
+const debug = require('debug')('webparsy')
 
 const definition = require('./helpers/definition')
 const steps = require('./helpers/steps')
@@ -9,7 +9,7 @@ const fatal = require('./helpers/err').fatal
 let def = null
 
 /**
- * Initialize the webscrapy!
+ * Initialize the webparsy!
  * 
  * @param {Object} program Commander's original object
  */

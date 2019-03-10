@@ -1,4 +1,4 @@
-const debug = require('debug')('webscrapy:steps')
+const debug = require('debug')('webparsy:steps')
 
 const error = require('./err').error
 const methods = require('./methods')
