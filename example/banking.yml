@@ -1,12 +1,18 @@
+# ##############################################################################
 # THIS IS PURELY FOR DEMO PURPOSES ONLY. I TAKE NO RESPOSABILITIES FOR THE USAGE
 # YOU MAKE WITH THIS.
-
-# WEBPARSY OR ITS DEVELOPER IS NOT LINKED OR RELATED WITH ABANCA
-
+#
+# WEBPARSY OR ITS DEVELOPER IS NOT LINKED OR RELATED WITH ABANCA.
+#
 # I STRONGLY RECOMEND NOT USING THIS CODE.
+# ##############################################################################
 
 # FOR DOCUMENTATION ON HOW TO USE ENVIRONMENT VARIABLES FOR FORM-FILLING, SEE
 # https://github.com/joseconstela/webparsy#form
+
+# export ABANCA_USERID="1234567890"
+# export ABANCA_PASSWORD="0987654321"
+# webparsy examples/banking.yml
 
 version: 1
 jobs:
