@@ -1,0 +1,29 @@
+# THIS IS PURELY FOR DEMO PURPOSES ONLY. I TAKE NO RESPOSABILITIES FOR THE USAGE
+# YOU MAKE WITH THIS.
+
+# WEBPARSY OR ITS DEVELOPER IS NOT LINKED OR RELATED WITH ABANCA
+
+# I STRONGLY RECOMEND NOT USING THIS CODE.
+
+# FOR DOCUMENTATION ON HOW TO USE ENVIRONMENT VARIABLES FOR FORM-FILLING, SEE
+# https://github.com/joseconstela/webparsy#form
+
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://bancaelectronica.abanca.com
+      - form:
+          elector: "#fFirst"
+          submit: true
+          fill:
+            - selector: '#card01'
+              value:
+                env: ABANCA_USERID
+            - selector: '#pin_number'
+              value:
+                env: ABANCA_PASSWORD
+      - text:
+          selector: '#ctl00_CuerpoPlaceHolder_tbAccounts_ctl01_AccountColor'
+          as: money
+          type: float

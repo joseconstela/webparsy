@@ -245,6 +245,11 @@ Example:
 
 Fill and submit forms. [example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
 
+Form filling can use values from environment variables. This is useful if you
+want to keep users login details in secret. If this is your case, instead of
+specifying the value as a string, set it as the env property for value. Check
+the example below or refer to [banking example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+
 Example: 
 
 ```yaml
@@ -254,6 +259,20 @@ Example:
     fill:                      # array of inputs to fill
       - selector: '[name="q"]' # input selector
         value: test            # input value
+```
+
+Using environment variables
+```yaml
+- form:
+    selector: "#login"            # form selector
+    submit: true                  # Submit after filling all details
+    fill:                         # array of inputs to fill
+      - selector: '[name="user"]' # input selector
+        value:
+          env: USERNAME           # process.env.USERNAME
+      - selector: '[name="pass"]' 
+        value: 
+          env: PASSWORD           # process.env.PASSWORD
 ```
 
 ## html
