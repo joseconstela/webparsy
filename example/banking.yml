@@ -14,7 +14,7 @@ jobs:
     steps:
       - goto: https://bancaelectronica.abanca.com
       - form:
-          elector: "#fFirst"
+          selector: "#fFirst"
           submit: true
           fill:
             - selector: '#card01'

@@ -4,7 +4,7 @@ jobs:
     steps:
       - goto: https://google.com/
       - form:
-          elector: "#tsf"
+          selector: "#tsf"
           submit: true
           fill:
             - selector: '[name="q"]'

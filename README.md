@@ -166,8 +166,8 @@ You can use the following values for `- type`:
 - `number` 
 - `integer` 
 - `float` 
-- `fcd` tranform to **f**loat an string-number that uses **c**comma for thousands
-- `fdc` tranform to **f**loat an string-number that uses **d**dot for thousands
+- `fcd` tranform to **f**loat an string-number that uses **c**omma for thousands
+- `fdc` tranform to **f**loat an string-number that uses **d**ot for thousands
 
 ## Steps
 
