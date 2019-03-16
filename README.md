@@ -285,8 +285,8 @@ Example:
 
 ```yaml
 - html
-  - as: divHtml
-  - selector: div
+    as: divHtml
+    selector: div
 ```
 
 ## waitFor
