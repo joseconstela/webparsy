@@ -65,7 +65,7 @@ const init = async (program) => {
   debug('Get definition steps')
 
   try {
-    for await (defStep of defSteps) {
+    for (defStep of defSteps) {
       let stepResult = await steps.exec(defStep, page)
       output = Object.assign({}, output, stepResult.result || {})
     }
