@@ -18,7 +18,6 @@ const init = async (program) => {
   let exitCode = 0
 
   let output = {}
-  
   // Get definition
 
   // File path specified from the cli
@@ -46,6 +45,7 @@ const init = async (program) => {
   const browserOpts = definition.cfg(def, 'main', 'browser') || {}
 
   const options = {
+    args: ['--no-sandbox'],
     width: browserOpts.width || 1200,
     height: browserOpts.height || 800,
     scaleFactor: browserOpts.scaleFactor || 1,
