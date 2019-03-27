@@ -1,0 +1,8 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://github.com
+      - click: button.js-details-target # navbar toggle menu
+      - screenshot:
+          path: Githug_after_click.png

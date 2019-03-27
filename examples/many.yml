@@ -1,0 +1,29 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://github.com/marketplace?category=code-quality
+      - many: 
+          as: github_tools
+          selector: main.col-lg-9.mt-1.mb-4.float-lg-right a
+          element:
+            # - text:
+            #     selector: .
+            #     property: href
+            #     type: text
+            #     as: url
+            - text:
+                selector: h4
+                type: text
+                transform: trim
+                as: name
+            - text:
+                selector: p
+                type: string
+                transform: trim
+                as: description
+            - text:
+                selector: span.text-small
+                type: string
+                transform: trim
+                as: installs

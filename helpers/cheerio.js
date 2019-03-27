@@ -1,6 +1,10 @@
 const cheerio = require('cheerio')
 
-const load = (html) => cheerio.load(html)
+const load = (html) => {
+  return typeof html === 'string' ? cheerio.load(html) : html
+}
+
+module.exports.load = load
 
 module.exports.text = (html, selector) => typeof (html === 'string') ?
     load(html)(selector || null).text() :

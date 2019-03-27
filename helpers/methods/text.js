@@ -4,7 +4,9 @@ const cheerio = require('../cheerio')
 
 const schema = {
   method: 'text',
-  process: (page, params, html) => cheerio.text(html, params.selector),
+  process: (page, params, html) => {
+    return cheerio.text(html, params.selector)
+  },
   output: (raw, params) => parser.outputVal(raw, params)
 }
 

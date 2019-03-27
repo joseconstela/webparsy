@@ -53,6 +53,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
+  * [click](#click) Click on an element
   * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ## Overview
@@ -287,6 +288,16 @@ Example:
 - html
     as: divHtml
     selector: div
+```
+
+## click
+
+Click on an element. [example](https://github.com/joseconstela/webparsy/blob/master/example/click.yml)
+
+Example:
+
+```yaml
+- click: button.click-me
 ```
 
 ## waitFor
