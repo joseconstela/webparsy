@@ -50,6 +50,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [screenshot](#screenshot) Takes an screenshot of the page
   * [pdf](#pdf) Takes a pdf of the page
   * [text](#text) Gets the text for a given CSS selector
+  * [many](#many) Returns an array of elements given their CSS selectors
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
@@ -178,13 +179,15 @@ Steps are the list of things the browser must do.
 This can be:
 
   * [goto](#goto) Navigate to an URL
-  * [goBack](#goBack) Navigate to the previous page in history.
+  * [goBack](#goBack) Navigate to the previous page in history
   * [screenshot](#screenshot) Takes an screenshot of the page
   * [pdf](#pdf) Takes a pdf of the page
   * [text](#text) Gets the text for a given CSS selector
+  * [many](#many) Returns an array of elements given their CSS selectors
   * [title](#title) Gets the title for the current page.
-  * [form](#form) Fill and submit forms.
-  * [html](#html) Return HTML code for the page or a DOM element.
+  * [form](#form) Fill and submit forms
+  * [html](#html) Return HTML code for the page or a DOM element
+  * [click](#click) Click on an element
   * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ### goto
