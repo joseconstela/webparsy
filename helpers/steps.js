@@ -6,8 +6,9 @@ const methods = require('./methods')
 /**
  * @param {object} step 
  * @param {object} page 
+ * @param {string} html 
  */
-const exec = async (step, page) => {
+const exec = async (step, page, html) => {
   debug('----------------------------')
   debug(`Exec ${JSON.stringify(step)}`)
 
@@ -37,10 +38,12 @@ const exec = async (step, page) => {
   if (usedMethod.puppeteer) {
     raw = parameters ? await page[methodName](parameters || {}) : await page[methodName]()
   } else if (usedMethod.process) {
-    let html = await page.content()
-    raw = await usedMethod.process(page, parameters || {}, html)
+    let _html = html || await page.content()
+    raw = await usedMethod.process(page, parameters || {}, _html)
   }
-  const result = usedMethod.output ? usedMethod.output(raw, parameters || {}) : null
+
+  const url = await page.url()
+  const result = usedMethod.output ? usedMethod.output(raw, parameters || {}, url) : null
   return { raw, result }
 }
 

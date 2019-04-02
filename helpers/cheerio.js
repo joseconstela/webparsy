@@ -1,10 +1,20 @@
 const cheerio = require('cheerio')
 
-const load = (html) => cheerio.load(html)
+const load = (html) => {
+  return typeof html === 'string' ? cheerio.load(html) : html
+}
+
+module.exports.load = load
 
 module.exports.text = (html, selector) => typeof (html === 'string') ?
     load(html)(selector || null).text() :
     cheerio(selector || null).text()
+
+module.exports.property = (html, selector, property) => {
+  return typeof (html === 'string') ?
+  load(html)(selector || null).attr(property) :
+  cheerio(selector || null).attr(property)
+}
 
 module.exports.html = (html, selector) => {
   // Get full page html
