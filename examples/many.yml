@@ -5,16 +5,17 @@ jobs:
       - goto: https://github.com/marketplace?category=code-quality
       - many: 
           as: github_tools
-          selector: main.col-lg-9.mt-1.mb-4.float-lg-right a
+          selector: main .col-lg-9.mt-1.mb-4.float-lg-right a.col-md-6.mb-4.d-flex.no-underline
           element:
-            # - text:
-            #     selector: .
-            #     property: href
-            #     type: text
-            #     as: url
+            - property:
+                selector: a
+                type: string
+                property: href
+                as: url
+                transform: absoluteUrl
             - text:
-                selector: h4
-                type: text
+                selector: h3.h4
+                type: string
                 transform: trim
                 as: name
             - text:
@@ -22,8 +23,3 @@ jobs:
                 type: string
                 transform: trim
                 as: description
-            - text:
-                selector: span.text-small
-                type: string
-                transform: trim
-                as: installs

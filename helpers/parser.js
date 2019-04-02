@@ -48,7 +48,7 @@ module.exports.cast = cast
  * @param {string} type 
  * @param {*} type 
  */
-const transform = (value, type) => {
+const transform = (value, type, defalutValue, url) => {
   if (!type) return value
 
   switch (type.toLowerCase()) {
@@ -59,6 +59,15 @@ const transform = (value, type) => {
     case 'lowercase':
       if (typeof value !== 'string') return value
       return value.toLowerCase()
+      break;
+    case 'absoluteurl':
+      if (typeof value !== 'string') return value
+      try {
+        return new URL(value, url).href
+      }
+      catch (ex) {
+        return value
+      }
       break;
     default:
       return value
@@ -72,10 +81,14 @@ module.exports.transform = transform
  * 
  * @param {*} value 
  * @param {*} as 
+ * @param {*} asDefault 
+ * @param {*} url 
  */
-const outputVal = (value, params, asDefault) => {
+const outputVal = (value, params, asDefault, url) => {
+  console.log({url})
+  if (Array.isArray(value) && !params.type) { params.type = 'array' }
   value = cast(value, params.type || 'string', params.default)
-  value = transform(value, params.transform || 'string', params.default)
+  value = transform(value, params.transform || 'string', params.default, url)
   let result = {}
   result[params.as || asDefault || 'default'] = value
   return result

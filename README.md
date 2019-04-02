@@ -154,6 +154,7 @@ You can use the following `- transform` methods:
 
 - `uppercase` transforms the result to uppercase
 - `lowercase` transforms the result to lowercase
+- `absoluteUrl` return the absolute url for a link
 
 ## Types
 
@@ -230,16 +231,20 @@ page's title will tbe returned as `{ title }`. [example](https://github.com/jose
 - title
 ```
 
-## text
+## many
 
-Gets the text for a given CSS selector. [example](https://github.com/joseconstela/webparsy/blob/master/example/_weather.yml)
+Returns an array of elements given their CSS selectors. [example](https://github.com/joseconstela/webparsy/blob/master/example/many.yml)
 
 Example: 
 
 ```yaml
-- text:
-  - selector: .user.name
-  - as: userName
+- many: 
+  as: articles
+  selector: main ol.articles-list li.article-item
+  element:
+    - text:
+      selector: .title
+      as: title
 ```
 
 ## form

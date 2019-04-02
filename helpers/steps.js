@@ -41,7 +41,9 @@ const exec = async (step, page, html) => {
     let _html = html || await page.content()
     raw = await usedMethod.process(page, parameters || {}, _html)
   }
-  const result = usedMethod.output ? usedMethod.output(raw, parameters || {}) : null
+
+  const url = await page.url()
+  const result = usedMethod.output ? usedMethod.output(raw, parameters || {}, url) : null
   return { raw, result }
 }
 
