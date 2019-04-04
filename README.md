@@ -104,16 +104,6 @@ One of `yaml`, `file` or `string` is required.
 Additionally, you can pass a `flags` object property to input additional values
 to your scraping process.
 
-Example:
-
-```javascript
-const webparsy = require('webparsy')
-const yaml = require('yaml')
-const parsingResults= await webparsy.init({
-  yaml: yaml.parse(userInput)
-})
-```
-
 ## Browser config
 
 You can setup Chrome's details in the `browser` property within the main job.
