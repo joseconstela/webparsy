@@ -85,7 +85,6 @@ module.exports.transform = transform
  * @param {*} url 
  */
 const outputVal = (value, params, asDefault, url) => {
-  console.log({url})
   if (Array.isArray(value) && !params.type) { params.type = 'array' }
   value = cast(value, params.type || 'string', params.default)
   value = transform(value, params.transform || 'string', params.default, url)
