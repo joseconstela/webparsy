@@ -35,6 +35,7 @@ const init = async (program) => {
     def = program.yaml
   }
 
+
   // No definition
   else {
     fatal('No definition specified')
@@ -63,10 +64,9 @@ const init = async (program) => {
 
   const defSteps = definition.cfg(def, 'main', 'steps')
   debug('Get definition steps')
-
   try {
     for (defStep of defSteps) {
-      let stepResult = await steps.exec(defStep, page)
+      let stepResult = await steps.exec(program.flags, defStep, page)
       output = Object.assign({}, output, stepResult.result || {})
     }
   }
@@ -82,7 +82,7 @@ const init = async (program) => {
     fatal(error)
   }
 
-  if (program.rawArgs) {
+  if (program.cli) {
     console.log(JSON.stringify(output, ' ', 2))
   }
   else {

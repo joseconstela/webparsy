@@ -2,7 +2,7 @@ const parser = require('../parser')
 
 const schema = {
   method: 'waitFor',
-  process: async (page, params, html) => {
+  process: async (flags, page, params, html) => {
     if (params.selector) {
       await page.waitForSelector(params.selector)
     }

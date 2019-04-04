@@ -3,11 +3,12 @@ const parser = require('../parser')
 const cheerio = require('../cheerio')
 const steps = require('../steps')
 
-const runElement = async (page, $, params, elem) => {
+const runElement = async (flags, page, $, params, elem) => {
   let el = {}
   await Promise.all(params.element.map(async defStep => {
     const elementHtml = await page.evaluate(el => el.outerHTML, elem)
     const stepResult = await steps.exec(
+      flags,
       defStep,
       page,
       elementHtml
@@ -19,21 +20,22 @@ const runElement = async (page, $, params, elem) => {
 
 const schema = {
   method: 'many',
-  process: async (page, params, html) => {
+  process: async (flags, page, params, html) => {
     let selectedElements = await page.$$(params.selector)
     // const $ = cheerio.load(html)
 
     let elements = []
 
     await Promise.all(selectedElements.map(async elem => {
+      console.log(params)
       return elements.push(
-        await runElement(page, null, params, elem)
+        await runElement(flags, page, null, params, elem)
       )
     }))
 
     return elements
   },
-  output: (raw, params, url) => parser.outputVal(raw, params, null, url)
+  output: (flags, raw, params, url) => parser.outputVal(raw, params, null, url)
 }
 
 module.exports = schema

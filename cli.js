@@ -1,17 +1,18 @@
 #!/usr/bin/env node
+'use strict'
 
-const program = require('commander')
-const package = require('./package.json')
+const meow = require('meow')
+const foo = require('.')
  
-program
-  .version(package.version)
-  .parse(process.argv)
- 
-if (!program.args[0]) {
-  console.log('No definition file specified')
-  process.exit(1)
-}
+const cli = meow(`
+    Usage
+      $ webparsy <yaml file>
+`, {
+    
+})
 
-program.file = program.args[0]
-
-require('.').init(program)
+require('.').init({
+  file: cli.input[0],
+  flags: cli.flags,
+  cli: true
+})

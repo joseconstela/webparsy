@@ -4,11 +4,12 @@ const error = require('./err').error
 const methods = require('./methods')
 
 /**
+ * @param {object} flags 
  * @param {object} step 
  * @param {object} page 
  * @param {string} html 
  */
-const exec = async (step, page, html) => {
+const exec = async (flags, step, page, html) => {
   debug('----------------------------')
   debug(`Exec ${JSON.stringify(step)}`)
 
@@ -39,11 +40,11 @@ const exec = async (step, page, html) => {
     raw = parameters ? await page[methodName](parameters || {}) : await page[methodName]()
   } else if (usedMethod.process) {
     let _html = html || await page.content()
-    raw = await usedMethod.process(page, parameters || {}, _html)
+    raw = await usedMethod.process(flags, page, parameters || {}, _html)
   }
 
   const url = await page.url()
-  const result = usedMethod.output ? usedMethod.output(raw, parameters || {}, url) : null
+  const result = usedMethod.output ? usedMethod.output(flags, raw, parameters || {}, url) : null
   return { raw, result }
 }
 

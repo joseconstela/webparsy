@@ -1,6 +1,6 @@
 const schema = {
   method: 'form',
-  process: async (page, params, html) => {
+  process: async (flags, page, params, html) => {
     (params.fill || []).map(async field => {
       // Field may contain references to environment variables. 
       // Just in case, use a cloned object so the original stays immutable.
