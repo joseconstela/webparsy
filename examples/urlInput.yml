@@ -3,5 +3,5 @@ jobs:
   main:
     steps:
       - goto: 
-          param: url
+          flag: url
       - title

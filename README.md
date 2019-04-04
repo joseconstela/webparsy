@@ -69,7 +69,7 @@ $ npm i webparsy -g
 ```
 
 ```bash
-$ webparsy example/_weather.yml
+$ webparsy example/_weather.yml --customFlag "custom flag value"
 Result:
 
 {
@@ -85,6 +85,7 @@ Result:
 const webparsy = require('webparsy')
 const parsingResult = await webparsy.init({
   file: 'jobdefinition.yml'
+  flags: { ... } // optional
 })
 ```
 
@@ -99,6 +100,9 @@ One of `yaml`, `file` or `string` is required.
 - `yaml`: The scraping task definition, built using [yaml npm module](https://www.npmjs.com/package/yaml)
 - `string`: The scraping task definition, as a plain string
 - `file`: The path for the file that stores the web parsing definition.
+
+Additionally, you can pass a `flags` object property to input additional values
+to your scraping process.
 
 Example:
 
@@ -197,6 +201,31 @@ URL to navigate page to. The url should include scheme, e.g. https://. [example]
 ```yaml
 - goto: https://example.com
 ```
+
+You can also tell WebParsy which urls it should visit via flags (available via
+cli and library). Example:
+
+```yaml
+- goto:
+    flag: myWebsiteUrl
+```
+
+You can then call webparsy as:
+
+```bash
+webparsy myyamlfile.yaml --myWebsiteUrl "https://google.com"
+```
+
+or 
+
+```javascript
+webparsy.init({
+  file: 'myyamlfile.yml'
+  flags: { myWebsiteUrl: 'https://google.com' }
+})
+```
+
+[example](https://github.com/joseconstela/webparsy/blob/master/example/urlInput.js)
 
 ## goBack
 
