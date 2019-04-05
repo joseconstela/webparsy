@@ -25,12 +25,9 @@ const schema = {
     // const $ = cheerio.load(html)
 
     let elements = []
-
     await Promise.all(selectedElements.map(async elem => {
-      console.log(params)
-      return elements.push(
-        await runElement(flags, page, null, params, elem)
-      )
+      let v = await runElement(flags, page, null, params, elem)
+      return elements.push(v)
     }))
 
     return elements
