@@ -55,6 +55,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
   * [click](#click) Click on an element
+  * [url](#url) Return the current URL
   * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ## Overview
@@ -182,6 +183,7 @@ This can be:
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
   * [click](#click) Click on an element
+  * [url](#url) Return the current URL
   * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
 ### goto
@@ -325,6 +327,17 @@ Example:
 
 ```yaml
 - click: button.click-me
+```
+
+## url
+
+Return the current URL.
+
+Example:
+
+```yaml
+- url:
+    as: currentUrl
 ```
 
 ## waitFor
