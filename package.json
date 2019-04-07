@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.0.0"
+    "mocha": "^6.1.1"
   },
   "bugs": {
     "url": "https://github.com/joseconstela/webparsy/issues"
