@@ -122,23 +122,22 @@ jobs:
 
 ## Output
 
-WebParsy can get websites contents and return them.
-
-For example, you could scrape a weather website, and get the temperature for your city in an object you can reuse for your own purposes.
-
-You can either grab the page's [html](#html) code, the [title](#title) or an specific [text](#text) across the page by using CSS selectors.
-
-Outputting values from WebParsy need some very basic details. This are:
+In order for WebParsy to get contents, it needs some very basic details. This are:
 
 - `as` the property you want to be returned
 - `selector` the css selector to extract the html or text from
 
-A possible example to grab your city's temperature could be:
+Other optional options are
+
+- `parent` Get the parent of the element filtered by a selector. 
+
+Example
 
 ```yaml
-- text:
-  - as: temperature
-  - selector: .today_nowcard-temp span
+text:
+  selector: .entry-title
+  as: entryLink
+  parent: a
 ```
 
 ## Transform
