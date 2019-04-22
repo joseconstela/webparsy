@@ -3,10 +3,10 @@ const parser = require('../parser')
 const cheerio = require('../cheerio')
 const steps = require('../steps')
 
-const runElement = async (flags, page, $, params, elem) => {
+const runElement = async (flags, page, params, $, elem) => {
   let el = {}
   await Promise.all(params.element.map(async defStep => {
-    const elementHtml = await page.evaluate(el => el.outerHTML, elem)
+    const elementHtml = $.html(elem)
     const stepResult = await steps.exec(
       flags,
       defStep,
@@ -20,13 +20,15 @@ const runElement = async (flags, page, $, params, elem) => {
 
 const schema = {
   method: 'many',
-  process: async (flags, page, params, html) => {
-    let selectedElements = await page.$$(params.selector)
+  process: async (flags, page, params, html, usingPuppeteer) => {
+    let $ = cheerio.load(html)
+    let selectedElements = $(params.selector)
+    // let selectedElements = await page.$$(params.selector)
     // const $ = cheerio.load(html)
 
     let elements = []
-    await Promise.all(selectedElements.map(async elem => {
-      let v = await runElement(flags, page, null, params, elem)
+    await Promise.all($(selectedElements).toArray().map(async elem => {
+      let v = await runElement(flags, page, params, $, elem)
       return elements.push(v)
     }))
 
