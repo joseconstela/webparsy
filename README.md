@@ -1,27 +1,57 @@
 # WebParsy [![CircleCI](https://circleci.com/gh/joseconstela/webparsy.svg?style=svg)](https://circleci.com/gh/joseconstela/webparsy) [![Greenkeeper badge](https://badges.greenkeeper.io/joseconstela/webparsy.svg)](https://greenkeeper.io/)
 
-> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
+> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) (or not*) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
 ```yaml
+version: 1
 jobs:
   main:
     steps:
-      - goto: https://google.com
+      - goto: https://github.com/marketplace?category=code-quality
       - pdf:
-          path: Google.pdf
+          path: Github_Tools.pdf
           format: A4
-      - goto: https://weather.com/es-ES/tiempo/hoy/l/SPXX0050:1:SP
-      - title
-      - text:
-          selector: .h4.today_nowcard-location
-          as: city
-      - text:
-          selector: .today_nowcard-temp span
-          type: number
-          as: temp
+      - many: 
+          as: github_tools
+          selector: main .col-lg-9.mt-1.mb-4.float-lg-right a.col-md-6.mb-4.d-flex.no-underline
+          element:
+            - property:
+                selector: a
+                type: string
+                property: href
+                as: url
+                transform: absoluteUrl
+            - text:
+                selector: h3.h4
+                type: string
+                transform: trim
+                as: name
+            - text:
+                selector: p
+                type: string
+                transform: trim
+                as: description
 ```
 
-_Build a PDF from Google's homepage and get Madrid's temperature._
+_Return an array with Github's tools, and creates a PDF. Example output:_
+
+```json
+{
+  "github_tools": [
+    {
+      "url": "https://github.com/marketplace/codelingo",
+      "name": "codelingo",
+      "description": "Your Code, Your Rules - Automate code reviews with your own best practices"
+    },
+    {
+      "url": "https://github.com/marketplace/codebeat",
+      "name": "codebeat",
+      "description": "Code review expert on demand. Automated for mobile and web"
+    },
+    ...
+  ]
+}
+```
 
 ---
 
