@@ -1,6 +1,6 @@
 # WebParsy [![CircleCI](https://circleci.com/gh/joseconstela/webparsy.svg?style=svg)](https://circleci.com/gh/joseconstela/webparsy) [![Greenkeeper badge](https://badges.greenkeeper.io/joseconstela/webparsy.svg)](https://greenkeeper.io/)
 
-> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) (or simple http/s get requests) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
+> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) ([goto](#goto)) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
 ```yaml
 version: 1
@@ -221,6 +221,20 @@ URL to navigate page to. The url should include scheme, e.g. https://. [example]
 
 ```yaml
 - goto: https://example.com
+```
+
+You can also tell WebParsy to don't use Puppeteer to browse, and instead do a
+normal HTTP(s) GET request. This will perform much faster, but it may not be
+suitable for websites that requires JavaScript. [simple example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/getRequest.yml)
+[extended example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/many_using_get.yml)
+
+Note that some methods (for example: `form`, `click` and others) will not be
+available if you are not browsing using puppeteer.
+
+```yaml
+- goto:
+    url: https://google.com
+    method: get
 ```
 
 You can also tell WebParsy which urls it should visit via flags (available via
