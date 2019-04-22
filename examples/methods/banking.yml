@@ -32,4 +32,4 @@ jobs:
       - text:
           selector: '#ctl00_CuerpoPlaceHolder_tbAccounts_ctl01_AccountColor'
           as: money
-          type: float
+          type: fdc
