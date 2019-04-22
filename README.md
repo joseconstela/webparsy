@@ -1,6 +1,6 @@
 # WebParsy [![CircleCI](https://circleci.com/gh/joseconstela/webparsy.svg?style=svg)](https://circleci.com/gh/joseconstela/webparsy) [![Greenkeeper badge](https://badges.greenkeeper.io/joseconstela/webparsy.svg)](https://greenkeeper.io/)
 
-> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) (or not*) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
+> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) (or simple get requests) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
 ```yaml
 version: 1
