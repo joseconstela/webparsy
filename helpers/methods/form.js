@@ -1,7 +1,9 @@
 const schema = {
   method: 'form',
-  process: async (flags, page, params, html) => {
-    (params.fill || []).map(async field => {
+  process: async (flags, page, params, html, usingPuppeteer) => {
+    if (!usingPuppeteer) throw new Error(`form requires using puppeteer to browse pages`)
+
+    await Promise.all((params.fill || []).map(async field => {
       // Field may contain references to environment variables. 
       // Just in case, use a cloned object so the original stays immutable.
       const fieldClone = {...field}
@@ -12,7 +14,8 @@ const schema = {
       await page.evaluate((data) => {
         document.querySelector(`${data.params.selector || 'form'} ${data.field.selector}`).value = data.field.value
       }, { params, field: fieldClone })
-    })
+    }))
+
     if (params.submit) {
       await page.$eval(params.selector || 'form', form => form.submit())
       await page.waitForNavigation()
