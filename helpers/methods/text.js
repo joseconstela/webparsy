@@ -4,7 +4,7 @@ const cheerio = require('../cheerio')
 
 const schema = {
   method: 'text',
-  process: (flags, page, params, html) => {
+  process: (flags, page, params, html, usingPuppeteer) => {
     let elem = cheerio.load(html)(params.selector || null)
 
     if (params.parent) {

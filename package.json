@@ -36,6 +36,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "debug": "^4.1.1",
+    "got": "^9.6.0",
     "meow": "^5.0.0",
     "puppeteer": "^1.13.0",
     "yaml": "^1.4.0"

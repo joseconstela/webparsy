@@ -2,7 +2,9 @@ const parser = require('../parser')
 
 const schema = {
   method: 'waitFor',
-  process: async (flags, page, params, html) => {
+  process: async (flags, page, params, html, usingPuppeteer) => {
+    if (!usingPuppeteer) throw new Error(`form requires using puppeteer to browse pages`)
+    
     if (params.selector) {
       await page.waitForSelector(params.selector)
     }

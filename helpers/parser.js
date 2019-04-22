@@ -8,7 +8,7 @@
 const cast = (value, type, defaultValue) => {
   if (typeof value === 'undefined') return defaultValue || null
   if (value == null) return defaultValue
-
+  
   let r 
 
   switch (type || 'string') {

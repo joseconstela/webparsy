@@ -1,7 +1,9 @@
 const debug = require('debug')('webparsy:steps')
 
+const got = require('got')
+
 const error = require('./err').error
-const methods = require('./methods')
+let methods = require('./methods')
 
 /**
  * Given an step details, return webparsy's method name.
@@ -14,6 +16,48 @@ const methods = require('./methods')
  */
 const getMethodName = (step) => {
   return typeof step !== 'string' ? Object.keys(step)[0] : step
+}
+
+let usingPuppeteer = true
+let currentPageHtml = ''
+let currentPageUrl = ''
+
+const getPageHtml = async (step, _html, page) => {
+  if (_html) return _html
+  
+  if (getMethodName(step) === 'goto') {
+
+    // URLs can be passed as:
+    // - goto: example.com
+    // or
+    // - goto:
+    //     flag: websiteUrl
+    // or
+    // - goto:
+    //     url: example.com
+
+    const url = step.goto.flag ? flags[step.goto.flag] : step.goto.url ? step.goto.url : step.goto
+    currentPageUrl = url
+
+    if (step.goto.method === 'get') {
+      usingPuppeteer = false
+      let result = await got(step.goto.url)
+      currentPageHtml = result.body
+    }
+    else {
+      usingPuppeteer = true
+      await page.goto(url)
+      currentPageHtml = await page.content()
+    }
+  }
+  else {
+    if (usingPuppeteer && currentPageUrl !== page.url()) {
+      currentPageHtml = await page.content()
+      currentPageUrl = page.url()
+    }
+  }
+
+  return currentPageHtml
 }
 
 /**
@@ -31,7 +75,6 @@ const exec = async (flags, step, page, html) => {
 
   let methodName = getMethodName(step)
   debug(`Method name ${methodName}`)
-
   const usedMethod = methods[methodName]
 
   if (!usedMethod) {
@@ -46,14 +89,14 @@ const exec = async (flags, step, page, html) => {
   debug(`Parameters ${JSON.stringify(parameters)}`)
   
   if (usedMethod.puppeteer) {
+    if (!usingPuppeteer) throw new Error(`${methodName} requires using puppeteer to browse pages`)
     raw = parameters ? await page[methodName](parameters) : await page[methodName]()
   } else if (usedMethod.process) {
-    let _html = html || await page.content()
-    raw = await usedMethod.process(flags, page, parameters, _html)
+    let _html = await getPageHtml(step, html, page)
+    raw = await usedMethod.process(flags, page, parameters, _html, usingPuppeteer)
   }
 
-  const url = await page.url()
-  const result = usedMethod.output ? usedMethod.output(flags, raw, parameters, url) : null
+  const result = usedMethod.output ? usedMethod.output(flags, raw, parameters, currentPageUrl) : null
   return { raw, result }
 }
 
