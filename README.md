@@ -225,7 +225,7 @@ URL to navigate page to. The url should include scheme, e.g. https://. [example]
 
 You can also tell WebParsy to don't use Puppeteer to browse, and instead do a
 normal HTTP(s) GET request. This will perform much faster, but it may not be
-suitable for websites that requires JavaScript. [simple example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/getRequest.yml)
+suitable for websites that requires JavaScript. [simple example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/getRequest.yml) / 
 [extended example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/many_using_get.yml)
 
 Note that some methods (for example: `form`, `click` and others) will not be
