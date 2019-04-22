@@ -1,0 +1,10 @@
+# This example uses flags. You can either pass it via the library, or the cli:
+# `webparsy urlInput.yml --url "https://github.com"`
+
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: 
+          flag: url
+      - title

@@ -98,9 +98,9 @@ options:
 
 One of `yaml`, `file` or `string` is required.
 
-- `yaml`: The scraping task definition, built using [yaml npm module](https://www.npmjs.com/package/yaml)
-- `string`: The scraping task definition, as a plain string
-- `file`: The path for the file that stores the web parsing definition.
+- `yaml`: A [yaml npm module](https://www.npmjs.com/package/yaml) instance of the scraping definition.
+- `string`: The YAML definition, as a plain string.
+- `file`: The path for the YAML file containing the scraping definition.
 
 Additionally, you can pass a `flags` object property to input additional values
 to your scraping process.
@@ -143,7 +143,7 @@ text:
 ## Transform
 
 When you extract texts from a web page, you might want to transform the data
-before returning them. [example](https://github.com/joseconstela/webparsy/blob/master/example/transform.yml)
+before returning them. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/transform.yml)
 
 You can use the following `- transform` methods:
 
@@ -155,7 +155,7 @@ You can use the following `- transform` methods:
 
 When extractring details from a page, you might want them to be returned in
 different formats, for example as a number in the example of grabing temperatures.
-[example](https://github.com/joseconstela/webparsy/blob/master/example/type.yml)
+[example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/type.yml)
 
 You can use the following values for `- type`:
 
@@ -187,7 +187,7 @@ This can be:
 
 ### goto
 
-URL to navigate page to. The url should include scheme, e.g. https://. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
+URL to navigate page to. The url should include scheme, e.g. https://. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/goBack.yml)
 
 ```yaml
 - goto: https://example.com
@@ -216,11 +216,11 @@ webparsy.init({
 })
 ```
 
-[example](https://github.com/joseconstela/webparsy/blob/master/example/urlInput.js)
+[example](https://github.com/joseconstela/webparsy/blob/master/examples/flags.js)
 
 ## goBack
 
-Navigate to the previous page in history. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
+Navigate to the previous page in history. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/goBack.yml)
 
 ```yaml
 - goBack
@@ -229,7 +229,7 @@ Navigate to the previous page in history. [example](https://github.com/joseconst
 ## screenshot
 
 Takes an screenshot of the page. This triggers pupetteer's [page.screenshot](https://github.com/GoogleChrome/puppeteer/blob/v1.13.0/docs/api.md#pagescreenshotoptions).
-[example](https://github.com/joseconstela/webparsy/blob/master/example/screenshot.yml)
+[example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/screenshot.yml)
 
 ```yaml
 - screenshot:
@@ -248,7 +248,7 @@ Takes a pdf of the page. This triggers pupetteer's [page.pdf](https://github.com
 ## title
 
 Gets the title for the current page. If no output.as property is defined, the
-page's title will tbe returned as `{ title }`. [example](https://github.com/joseconstela/webparsy/blob/master/example/goBack.yml)
+page's title will tbe returned as `{ title }`. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/goBack.yml)
 
 ```yaml
 - title
@@ -256,7 +256,7 @@ page's title will tbe returned as `{ title }`. [example](https://github.com/jose
 
 ## many
 
-Returns an array of elements given their CSS selectors. [example](https://github.com/joseconstela/webparsy/blob/master/example/many.yml)
+Returns an array of elements given their CSS selectors. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/many.yml)
 
 Example: 
 
@@ -272,12 +272,12 @@ Example:
 
 ## form
 
-Fill and submit forms. [example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+Fill and submit forms. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/form.yml)
 
 Form filling can use values from environment variables. This is useful if you
 want to keep users login details in secret. If this is your case, instead of
 specifying the value as a string, set it as the env property for value. Check
-the example below or refer to [banking example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+the example below or refer to [banking example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/form.yml)
 
 Example: 
 
@@ -308,7 +308,7 @@ Using environment variables
 
 Gets the HTML code. If no `selector` specified, it returns the page's full HTML
 code. If no output.as property is defined, the result will be returned
-as `{ html }`. [example](https://github.com/joseconstela/webparsy/blob/master/example/html.yml)
+as `{ html }`. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/html.yml)
 
 Example: 
 
@@ -320,7 +320,7 @@ Example:
 
 ## click
 
-Click on an element. [example](https://github.com/joseconstela/webparsy/blob/master/example/click.yml)
+Click on an element. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/click.yml)
 
 Example:
 
@@ -342,7 +342,7 @@ Example:
 ## waitFor
 
 Wait for specified CSS selectors, on an specific amount of time before
-continuing [example](https://github.com/joseconstela/webparsy/blob/master/example/form.yml)
+continuing [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/form.yml)
 
 Examples: 
 
