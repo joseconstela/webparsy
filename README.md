@@ -198,21 +198,21 @@ cli and library). Example:
 
 ```yaml
 - goto:
-    flag: myWebsiteUrl
+    flag: websiteUrl
 ```
 
 You can then call webparsy as:
 
 ```bash
-webparsy myyamlfile.yaml --myWebsiteUrl "https://google.com"
+webparsy definition.yaml --websiteUrl "https://google.com"
 ```
 
 or 
 
 ```javascript
 webparsy.init({
-  file: 'myyamlfile.yml'
-  flags: { myWebsiteUrl: 'https://google.com' }
+  file: 'definition.yml'
+  flags: { websiteUrl: 'https://google.com' }
 })
 ```
 
