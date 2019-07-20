@@ -1,3 +1,6 @@
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
 const parser = require('../parser')
 
 const cheerio = require('../cheerio')
@@ -25,11 +28,21 @@ const schema = {
     let selectedElements = $(params.selector)
     // let selectedElements = await page.$$(params.selector)
     // const $ = cheerio.load(html)
-
+    
     let elements = []
     await Promise.all($(selectedElements).toArray().map(async elem => {
       let v = await runElement(flags, page, params, $, elem)
+
+      if (params.event) {
+        process.emit(params.event, v);
+        if (params.eventMethod === 'discard') {
+          elements = params.eventMethod
+          return
+        }
+      }
+
       return elements.push(v)
+
     }))
 
     return elements
