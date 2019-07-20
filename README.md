@@ -316,7 +316,7 @@ Example:
       as: title
 ```
 
-When you scape large amount of contents, you might end cosuming hords of RAM,
+When you scape large amount of contents, you might end consuming hords of RAM,
 your system might become slow and the scraping process might fail.
 
 To prevent this, WebParsy allows you to use process events so you can have the
