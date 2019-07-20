@@ -1,7 +1,7 @@
 {
   "name": "webparsy",
-  "version": "0.3.3",
-  "description": "WebParsy is a NodeJS library which allows to scrape websites using Puppeteer and YAML definitions",
+  "version": "0.3.4",
+  "description": "WebParsy is a NodeJS library which allows to scrape and interact with websites using Puppeteer and YAML definitions",
   "main": "index.js",
   "keywords": [
     "cli-app",
