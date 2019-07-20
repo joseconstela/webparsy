@@ -1,6 +1,6 @@
 # WebParsy [![CircleCI](https://circleci.com/gh/joseconstela/webparsy.svg?style=svg)](https://circleci.com/gh/joseconstela/webparsy) [![Greenkeeper badge](https://badges.greenkeeper.io/joseconstela/webparsy.svg)](https://greenkeeper.io/)
 
-> WebParsy is a NodeJS library and cli which allows to scrape websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) ([or not](#goto)) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
+> WebParsy is a fast and light NodeJS library and cli which allows to scrape and interact with websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) ([or not](#goto)) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
 ```yaml
 version: 1
@@ -13,6 +13,8 @@ jobs:
           format: A4
       - many: 
           as: github_tools
+          event: githubTool
+          eventMethod: discard
           selector: main .col-lg-9.mt-1.mb-4.float-lg-right a.col-md-6.mb-4.d-flex.no-underline
           element:
             - property:
