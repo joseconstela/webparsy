@@ -14,7 +14,6 @@ jobs:
       - many: 
           as: github_tools
           event: githubTool
-          eventMethod: discard
           selector: main .col-lg-9.mt-1.mb-4.float-lg-right a.col-md-6.mb-4.d-flex.no-underline
           element:
             - property:
