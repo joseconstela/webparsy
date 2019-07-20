@@ -2,7 +2,6 @@
 'use strict'
 
 const meow = require('meow')
-const foo = require('.')
  
 const cli = meow(`
     Usage
