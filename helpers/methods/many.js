@@ -1,8 +1,4 @@
-var events = require('events');
-var eventEmitter = new events.EventEmitter();
-
 const parser = require('../parser')
-
 const cheerio = require('../cheerio')
 const steps = require('../steps')
 
