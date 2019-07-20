@@ -1,6 +1,6 @@
 {
   "name": "webparsy",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "WebParsy is a NodeJS library which allows to scrape websites using Puppeteer and YAML definitions",
   "main": "index.js",
   "keywords": [
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.2.0"
   },
   "bugs": {
     "url": "https://github.com/joseconstela/webparsy/issues"

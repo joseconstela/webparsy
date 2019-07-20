@@ -314,6 +314,21 @@ Example:
       as: title
 ```
 
+When you scape large amount of contents, you might end cosuming hords of RAM,
+your system might become slow and the scraping process might fail.
+
+To prevent this, WebParsy allows you to use process events so you can have the
+scraped contents as they are scraped, instead of storing them in memory and
+waiting for the whole process to finish.
+
+To do this, simply add an `event` property to `many`, with the event's name you
+want to listen to. The event will contain each scraped item.
+
+`event` will give you the data as it's being scraped. To prevent it from being
+stored in memory, set `eventMethod` to `discard`.
+
+[Example using events](https://github.com/joseconstela/webparsy/blob/master/examples/many_event.js)
+
 ## form
 
 Fill and submit forms. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/form.yml)
