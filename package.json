@@ -38,7 +38,7 @@
     "debug": "^4.1.1",
     "got": "^9.6.0",
     "meow": "^5.0.0",
-    "puppeteer": "^1.20.0",
+    "puppeteer": "2.0.0",
     "yaml": "^1.7.2"
   },
   "devDependencies": {
