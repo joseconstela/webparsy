@@ -54,8 +54,7 @@ const getPageHtml = async (step, _html, page) => {
       // Got authentication?
       let getOptions = {}
       if (auth) {
-        getOptions.username = auth.username
-        getOptions.password = auth.password
+        getOptions.auth = `${auth.username}:${auth.password}`
       }
 
       let result = await got.get(step.goto.url, getOptions)
