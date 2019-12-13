@@ -81,7 +81,13 @@ jobs:
             password: password
       - html
 `
-    let result = await init({string: yml});
-    expect(result.html).to.contain('page_loaded')
+    try {
+      let result = await init({string: yml});
+      expect(result.html).to.contain('page_loaded')
+    }
+    catch (ex) {
+      console.error(ex)
+    }
+    
   })
 })
