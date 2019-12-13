@@ -216,7 +216,7 @@ This can be:
   * [url](#url) Return the current URL
   * [waitFor](#waitFor) Wait for selectors or some time before continuing
 
-### goto
+## goto
 
 URL to navigate page to. The url should include scheme, e.g. https://. [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/goBack.yml)
 
@@ -262,6 +262,20 @@ webparsy.init({
 ```
 
 [example](https://github.com/joseconstela/webparsy/blob/master/examples/flags.js)
+
+### Authentication
+
+You can perform basic HTTP authentication by providing the user and password as in the following example:
+
+```yml
+- goto: 
+    url: http://example.com
+    method: got
+    authentication:
+      type: basic
+      username: my_user
+      password: my_password
+```
 
 ## goBack
 

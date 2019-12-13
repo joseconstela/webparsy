@@ -7,6 +7,6 @@ jobs:
           method: got
           authentication:
             type: basic
-            username: userna
-            password: password
+            username: my_user
+            password: my_password
       - html
