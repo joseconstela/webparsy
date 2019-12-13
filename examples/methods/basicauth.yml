@@ -1,0 +1,12 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: 
+          url: http://example.com
+          method: got
+          authentication:
+            type: basic
+            username: userna
+            password: password
+      - html

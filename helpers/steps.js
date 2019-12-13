@@ -22,6 +22,13 @@ let usingPuppeteer = true
 let currentPageHtml = ''
 let currentPageUrl = ''
 
+const authentication = step => {
+  if (step.goto.authentication && step.goto.authentication.type === 'basic') {
+    return { username, password } = step.goto.authentication
+  }
+  return null
+}
+
 const getPageHtml = async (step, _html, page) => {
   if (_html) return _html
   
@@ -36,17 +43,33 @@ const getPageHtml = async (step, _html, page) => {
     // - goto:
     //     url: example.com
 
+    const auth = authentication(step)
+
     const url = step.goto.flag ? flags[step.goto.flag] : step.goto.url ? step.goto.url : step.goto
     currentPageUrl = url
 
-    if (step.goto.method === 'get') {
+    if (step.goto.method === 'got') {
       usingPuppeteer = false
-      let result = await got(step.goto.url)
+
+      // Got authentication?
+      let getOptions = {}
+      if (auth) {
+        getOptions.username = auth.username
+        getOptions.password = auth.password
+      }
+
+      let result = await got.get(step.goto.url, getOptions)
       currentPageHtml = result.body
     }
     else {
+      // puppeteer authentication
+      if (auth) {
+        await page.authenticate({username: auth.username, password: auth.password,waitUntil: 'networkidle0'});
+      }
+
       usingPuppeteer = true
       await page.goto(url)
+
       currentPageHtml = await page.content()
     }
   }

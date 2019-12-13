@@ -4,7 +4,7 @@ jobs:
     steps:
       - goto:
           url: http://example.com
-          method: get
+          method: got
       - html:
           as: page_html
       - html:
