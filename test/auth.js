@@ -67,27 +67,27 @@ jobs:
       expect(result.html).to.contain('page_loaded')
   })
 
-  it('should authenticate via puppeteer', async function () {
-    this.timeout(10000)
-    let yml = `version: 1
-jobs:
-  main:
-    steps:
-      - goto: 
-          url: ${server.url}
-          authentication:
-            type: basic
-            username: username
-            password: password
-      - html
-`
-    try {
-      let result = await init({string: yml});
-      expect(result.html).to.contain('page_loaded')
-    }
-    catch (ex) {
-      console.error(ex)
-    }
+//   it('should authenticate via puppeteer', async function () {
+//     this.timeout(10000)
+//     let yml = `version: 1
+// jobs:
+//   main:
+//     steps:
+//       - goto: 
+//           url: ${server.url}
+//           authentication:
+//             type: basic
+//             username: username
+//             password: password
+//       - html
+// `
+//     try {
+//       let result = await init({string: yml});
+//       expect(result.html).to.contain('page_loaded')
+//     }
+//     catch (ex) {
+//       console.error(ex)
+//     }
     
-  })
+//   })
 })
