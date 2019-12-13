@@ -6,7 +6,7 @@ const init = require('../index').init
 let server
 
 describe('basic authentication', async () => {
-
+  
   before(async () => {
     server = await createTestServer();
     server.get('/', async (req, res) => {
@@ -28,7 +28,8 @@ describe('basic authentication', async () => {
     await server.close();
   });
 
-  it('should not work without authentication', async () => {
+  it('should not work without authentication', async function () {
+    this.timeout(4000)
     let yml = `version: 1
 jobs:
   main:
@@ -47,7 +48,8 @@ jobs:
     }
   })
 
-  it('should authenticate via got', async () => {
+  it('should authenticate via got', async function () {
+    this.timeout(4000)
     let yml = `version: 1
 jobs:
   main:
@@ -65,7 +67,8 @@ jobs:
       expect(result.html).to.contain('page_loaded')
   })
 
-  it('should authenticate via puppeteer', async () => {
+  it('should authenticate via puppeteer', async function () {
+    this.timeout(4000)
     let yml = `version: 1
 jobs:
   main:
