@@ -29,7 +29,7 @@ describe('basic authentication', async () => {
   });
 
   it('should not work without authentication', async function () {
-    this.timeout(4000)
+    this.timeout(10000)
     let yml = `version: 1
 jobs:
   main:
@@ -49,7 +49,7 @@ jobs:
   })
 
   it('should authenticate via got', async function () {
-    this.timeout(4000)
+    this.timeout(10000)
     let yml = `version: 1
 jobs:
   main:
@@ -68,7 +68,7 @@ jobs:
   })
 
   it('should authenticate via puppeteer', async function () {
-    this.timeout(4000)
+    this.timeout(10000)
     let yml = `version: 1
 jobs:
   main:
