@@ -29,7 +29,7 @@ const authentication = step => {
   return null
 }
 
-const getPageHtml = async (step, _html, page) => {
+const getPageHtml = async (flags, step, _html, page) => {
   if (_html) return _html
   
   if (getMethodName(step) === 'goto') {
@@ -114,7 +114,7 @@ const exec = async (flags, step, page, html) => {
     if (!usingPuppeteer) throw new Error(`${methodName} requires using puppeteer to browse pages`)
     raw = parameters ? await page[methodName](parameters) : await page[methodName]()
   } else if (usedMethod.process) {
-    let _html = await getPageHtml(step, html, page)
+    let _html = await getPageHtml(flags, step, html, page)
     raw = await usedMethod.process(flags, page, parameters, _html, usingPuppeteer)
   }
 
