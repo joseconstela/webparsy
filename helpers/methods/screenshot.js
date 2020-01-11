@@ -15,6 +15,7 @@ const schema = {
     }
   },
   output: (flags, raw, params, url) => {
+    if (!params.as) return raw
     return parser.outputVal(raw, Object.assign(params, {
       type: 'buffer'
     }), null, url)
