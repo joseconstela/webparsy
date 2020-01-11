@@ -12,6 +12,10 @@ const cast = (value, type, defaultValue) => {
   let r 
 
   switch (type || 'string') {
+    case 'buffer':
+      if (Buffer.isBuffer(value)) return value
+      return Buffer.from(value)
+      break;
     case 'string':
       r = value.toString().trim()
       if (r === '') r = defaultValue
