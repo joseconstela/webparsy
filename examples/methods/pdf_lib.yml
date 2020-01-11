@@ -2,7 +2,8 @@ version: 1
 jobs:
   main:
     steps:
-      - goto: https://google.com
+      - goto: 
+          flag: url
       - pdf:
           as: file
           format: A4

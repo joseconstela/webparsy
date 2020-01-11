@@ -2,6 +2,7 @@ version: 1
 jobs:
   main:
     steps:
-      - goto: https://github.com
+      - goto: 
+          flag: url
       - screenshot:
           as: image

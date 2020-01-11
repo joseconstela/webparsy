@@ -295,6 +295,14 @@ Takes an screenshot of the page. This triggers pupetteer's [page.screenshot](htt
   - path: Github.png
 ```
 
+If you are using WebParsy as a NodeJS module, you can also get the screenshot
+retuned as a Buffer by using the `as` property.
+
+```yaml
+- screenshot:
+  - as: myScreenshotBuffer
+```
+
 ## pdf
 
 Takes a pdf of the page. This triggers pupetteer's [page.pdf](https://github.com/GoogleChrome/puppeteer/blob/v1.13.0/docs/api.md#pagepdfoptions)
@@ -302,6 +310,14 @@ Takes a pdf of the page. This triggers pupetteer's [page.pdf](https://github.com
 ```yaml
 - pdf:
   - path: Github.pdf
+```
+
+If you are using WebParsy as a NodeJS module, you can also get the PDF file
+retuned as a Buffer by using the `as` property.
+
+```yaml
+- pdf:
+  - as: pdfFileBuffer
 ```
 
 ## title
