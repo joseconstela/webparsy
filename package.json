@@ -44,7 +44,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "create-test-server": "^3.0.1",
-    "mocha": "^6.2.2"
+    "mocha": "^7.0.1"
   },
   "bugs": {
     "url": "https://github.com/joseconstela/webparsy/issues"
