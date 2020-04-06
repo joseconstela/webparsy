@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+
+- Add "keep open" support for development environments.
+- Add "multi-jobs" support.
+- Add keyboardPress support.
+- Add waitForNavigation support.
+
 ## 0.7.7
 
 - Force mocha exit
