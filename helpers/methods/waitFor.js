@@ -8,8 +8,14 @@ const schema = {
     if (params.selector) {
       await page.waitForSelector(params.selector)
     }
+    else if (params.xPath) {
+      await page.waitForXPath(params.xPath)
+    }
     else if (params.time) {
       await page.waitFor(parseInt(params.time))
+    }
+    else if (params.function) {
+      await page.waitForFunction(params.function)
     }
     else {
       throw new Error('Invalid waitFor options')
