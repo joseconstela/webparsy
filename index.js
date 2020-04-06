@@ -51,7 +51,8 @@ const init = async (program) => {
     height: browserOpts.height || 800,
     scaleFactor: browserOpts.scaleFactor || 1,
     timeout: browserOpts.timeout || 30 * 1000,
-    delay: browserOpts.delay || 0
+    delay: browserOpts.delay || 0,
+    headless: browserOpts.headless !== false
   }
 
   debug(`Puppeteer options ${JSON.stringify(options)}`)
@@ -75,7 +76,7 @@ const init = async (program) => {
     exitCode = 5
   }
   finally { // Always gracefylly close the browser
-    await browser.close()
+    // await browser.close()
   }
 
   if (exitCode) {
