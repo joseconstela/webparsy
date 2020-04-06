@@ -57,7 +57,6 @@ const init = async (program) => {
   }
 
   let puppeteer
-  console.log(browserOpts.executablePath)
   if (browserOpts.executablePath) {
     puppeteer = require('puppeteer-core')
     options.executablePath = browserOpts.executablePath
@@ -75,20 +74,27 @@ const init = async (program) => {
   const page = await browser.newPage()
   debug('New page created')
 
-  const defSteps = definition.cfg(def, 'main', 'steps')
+  const defaultSteps = definition.cfg(def, 'main', 'steps')
   debug('Get definition steps')
   try {
-    for (defStep of defSteps) {
-      let stepResult = await steps.exec(program.flags, defStep, page)
-      output = Object.assign({}, output, stepResult.result || {})
+    const runSteps = async allSteps => {
+      for (singleStep of allSteps) {
+        if (singleStep.run) {
+          const subSteps = definition.cfg(def, singleStep.run, 'steps')
+          await runSteps(subSteps)
+        }
+        let stepResult = await steps.exec(program.flags, singleStep, page)
+        output = Object.assign({}, output, stepResult.result || {})
+      }
     }
+    await runSteps(defaultSteps)
   }
   catch (ex) {
     error = ex
     exitCode = 5
   }
   finally { // Always gracefylly close the browser
-    // await browser.close()
+    if (!browserOpts.keepOpen) await browser.close()
   }
 
   if (exitCode) {

@@ -89,6 +89,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [url](#url) Return the current URL
   * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
+  * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
 
 ## Overview
 
@@ -153,8 +154,9 @@ jobs:
       timeout: 60
       delay: 0
       headless: true
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-      userDataDir: '/Users/MyUserName/Library/Application Support/Google/Chrome'
+      executablePath: ''
+      userDataDir: ''
+      keepOpen: false
 ```
 
 - executablePath: If provided, webparsy will launch Chrome from the specified
@@ -227,6 +229,7 @@ This can be:
   * [url](#url) Return the current URL
   * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
+  * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
 
 ## goto
 
@@ -494,6 +497,15 @@ Examples:
 ```yaml
 - waitFor:
     time: 1000 # Time in milliseconds
+```
+
+## keyboardPress
+
+Simulates the press of a keyboard key. [extended docs](https://github.com/puppeteer/puppeteer/blob/master/docs/api.md#keyboardpresskey-options)
+
+```yaml
+- keyboardPress: 
+    key: 'Enter'
 ```
 
 ## License
