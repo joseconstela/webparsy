@@ -85,9 +85,9 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
-  * [click](#click) Click on an element
+  * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
-  * [waitFor](#waitFor) Wait for selectors or some time before continuing
+  * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
 
 ## Overview
 
@@ -149,6 +149,7 @@ jobs:
       scaleFactor: 1
       timeout: 60
       delay: 0
+      headless: true
 ```
 
 ## Output
@@ -212,9 +213,9 @@ This can be:
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
-  * [click](#click) Click on an element
+  * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
-  * [waitFor](#waitFor) Wait for selectors or some time before continuing
+  * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
 
 ## goto
 
@@ -414,8 +415,21 @@ Click on an element. [example](https://github.com/joseconstela/webparsy/blob/mas
 
 Example:
 
+Default behaviour (CSS selector)
 ```yaml
 - click: button.click-me
+```
+
+Same as
+```yaml
+- click: 
+    selector: button.click-me
+```
+
+By xPath (clicks on the first match)
+```yaml
+- click: 
+    xPath: '/html/body/div[2]/div/div/div/div/div[3]/span'
 ```
 
 ## url
@@ -431,7 +445,7 @@ Example:
 
 ## waitFor
 
-Wait for specified CSS selectors, on an specific amount of time before
+Wait for specified CSS, XPath selectors, on an specific amount of time before
 continuing [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/form.yml)
 
 Examples: 
@@ -439,6 +453,16 @@ Examples:
 ```yaml
 - waitFor:
    selector: "#search-results"
+```
+
+```yaml
+- waitFor:
+   xPath: "/html/body/div[1]/header/div[1]/a/svg"
+```
+
+```yaml
+- waitFor:
+   function: "console.log(Date.now())"
 ```
 
 ```yaml
