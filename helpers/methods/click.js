@@ -9,7 +9,6 @@ const schema = {
       if (button) {
           await button.click()
       }
-      await page.click(params.selector)
     }
     else if (params) {
       await page.click(params)
