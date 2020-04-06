@@ -9,7 +9,7 @@ const schema = {
       await page.waitForSelector(params.selector)
     }
     else if (params.xPath) {
-      await page.waitForXPath(params.xPath)
+      await page.waitForXPath(params.xPath, params.options || {})
     }
     else if (params.time) {
       await page.waitFor(parseInt(params.time))

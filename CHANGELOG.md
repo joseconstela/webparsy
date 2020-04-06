@@ -1,6 +1,12 @@
 # Changelog
 
+## 0.7.6
+
+- Implement typing
+- Implement custom chrome path and user data directory (Chrome profiles)
+
 ## 0.7.5
+
 - Fix click by xpath
 
 ## 0.7.4

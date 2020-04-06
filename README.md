@@ -87,6 +87,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [html](#html) Return HTML code for the page or a DOM element
   * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
+  * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
 
 ## Overview
@@ -140,6 +141,8 @@ to your scraping process.
 
 You can setup Chrome's details in the `browser` property within the main job.
 
+None of the following settings are required.
+
 ```yaml
 jobs:
   main:
@@ -150,7 +153,14 @@ jobs:
       timeout: 60
       delay: 0
       headless: true
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+      userDataDir: '/Users/MyUserName/Library/Application Support/Google/Chrome'
 ```
+
+- executablePath: If provided, webparsy will launch Chrome from the specified
+path.
+- userDataDir: If provided, webparsy will launch Chrome with the specified
+user's profile.
 
 ## Output
 
@@ -215,6 +225,7 @@ This can be:
   * [html](#html) Return HTML code for the page or a DOM element
   * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
+  * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
 
 ## goto
@@ -430,6 +441,21 @@ By xPath (clicks on the first match)
 ```yaml
 - click: 
     xPath: '/html/body/div[2]/div/div/div/div/div[3]/span'
+```
+
+## type
+
+Sends a `keydown`, `keypress/input`, and `keyup` event for each character in
+the text.
+
+Example:
+
+```yaml
+- type:
+    selector: input.user
+    text: jonsnow@example.com
+    options:
+      delay: 4000
 ```
 
 ## url

@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer')
 const debug = require('debug')('webparsy')
 
 const definition = require('./helpers/definition')
@@ -45,14 +44,27 @@ const init = async (program) => {
 
   const browserOpts = definition.cfg(def, 'main', 'browser') || {}
 
-  const options = {
-    args: ['--no-sandbox'],
+  let options = {
+    args: [
+      '--no-sandbox'
+    ],
     width: browserOpts.width || 1200,
     height: browserOpts.height || 800,
     scaleFactor: browserOpts.scaleFactor || 1,
     timeout: browserOpts.timeout || 30 * 1000,
     delay: browserOpts.delay || 0,
     headless: browserOpts.headless !== false
+  }
+
+  let puppeteer
+  console.log(browserOpts.executablePath)
+  if (browserOpts.executablePath) {
+    puppeteer = require('puppeteer-core')
+    options.executablePath = browserOpts.executablePath
+    options.userDataDir = browserOpts.userDataDir
+  }
+  else {
+    puppeteer = require('puppeteer')
   }
 
   debug(`Puppeteer options ${JSON.stringify(options)}`)
