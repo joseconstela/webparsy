@@ -75,8 +75,10 @@ Don't panic. There are examples for all WebParsy features in the examples folder
 - [Output](#output)
 - [Transform](#transform)
 - [Types](#types)
+- [Multi-jobs](#multi-jobs-support)
 - [Steps](#steps)
   * [goto](#goto) Navigate to an URL
+  * [run](#run) Runs a group of steps by its name.
   * [goBack](#goBack) Navigate to the previous page in history
   * [screenshot](#screenshot) Takes an screenshot of the page
   * [pdf](#pdf) Takes a pdf of the page
@@ -123,7 +125,7 @@ const parsingResult = await webparsy.init({
 })
 ```
 
-#### Methods:
+#### Methods
 
 ##### init(options)
 
@@ -210,6 +212,35 @@ You can use the following values for `- type`:
 - `fcd` tranform to **f**loat an string-number that uses **c**omma for thousands
 - `fdc` tranform to **f**loat an string-number that uses **d**ot for thousands
 
+## Multi-jobs support
+
+You can define groups of steps (jobs) that you can reuse at any moment during an
+scraping process.
+
+For example, let's say you want to signup twice in a website. You will have a
+"main" job (that executes by defaul) but you can create an additional one called
+"signup", that you can reuse in the "main" one.
+
+```yaml
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: https://example.com/
+      - run: signup
+      - click: '#logout'
+      - run: signup
+  signup:
+    steps:
+      - goto: https://example.com/register
+      - form:
+          selector: "#signup-user"
+          submit: true
+          fill:
+            - selector: '[name="username"]'
+              value: jonsnow@example.com
+```
+
 ## Steps
 
 Steps are the list of things the browser must do.
@@ -217,6 +248,7 @@ Steps are the list of things the browser must do.
 This can be:
 
   * [goto](#goto) Navigate to an URL
+  * [run](#run) Runs a group of steps by its name.
   * [goBack](#goBack) Navigate to the previous page in history
   * [screenshot](#screenshot) Takes an screenshot of the page
   * [pdf](#pdf) Takes a pdf of the page
@@ -290,6 +322,15 @@ You can perform basic HTTP authentication by providing the user and password as 
       type: basic
       username: my_user
       password: my_password
+```
+
+
+## run
+
+Runs a group of steps by its name.
+
+```yaml
+- run: signupProcess
 ```
 
 ## goBack
