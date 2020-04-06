@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.7
+
+- Force mocha exit
+
 ## 0.7.6
 
 - Implement typing
