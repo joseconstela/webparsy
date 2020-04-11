@@ -8,7 +8,7 @@ const schema = {
       return await page.screenshot()
     }
     else if (params.path) {
-      await page.screenshot(params.path)
+      await page.screenshot({path:params.path})
     }
     else {
       throw new Error('incorrect-screenshot-options')
