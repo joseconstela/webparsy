@@ -12,7 +12,7 @@ const schema = {
     }
     else if (params.path) {
       debug('Storing screenshot in', params.path)
-      return await page.screenshot(params.path)
+      await page.screenshot({path:params.path})
     }
     else {
       throw new Error('incorrect-screenshot-options')
