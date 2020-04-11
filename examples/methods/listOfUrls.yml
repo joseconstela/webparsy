@@ -1,0 +1,50 @@
+version: 1
+jobs:
+  main:
+    browser:
+      width: 1200
+      height: 800
+      headless: false
+      keepOpen: true
+    steps:
+      - goto: 'file:///Users/joseconstela/git/webparsy/test/website/index.html'
+      - run: getListOfPages
+      - run: visitPages
+  getListOfPages:
+    steps:
+      - listUrls:
+          as: pages
+          selector: '#pages'
+          element:
+            as: pageUrl
+            selector: a
+            type: string
+            property: href
+            transform: absoluteUrl
+  visitPages:
+    loop: pages
+    steps:
+      - goto:
+          flag: pageUrl
+      - run: getListOfArticlesUrls
+      - run: goToEachArticleUrl
+  getListOfArticlesUrls:
+    steps:
+      - listUrls: 
+          as: articlesUrls
+          selector: '#articles'
+          element:
+            as: url
+            selector: a
+            type: string
+            property: href
+            transform: absoluteUrl
+  goToEachArticleUrl:
+    loop: articlesUrls
+    steps:
+      - goto:
+          flag: url
+      - run: scrapeArticleDetails
+  scrapeArticleDetails:
+    steps:
+      - title

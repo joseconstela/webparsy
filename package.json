@@ -16,7 +16,7 @@
     "web scraper"
   ],
   "scripts": {
-    "test": "mocha --exit"
+    "test": "cross-env NODE_ENV=test env-cmd -f .env --no-override jest --coverage"
   },
   "bin": {
     "webparsy": "cli.js"
@@ -43,9 +43,11 @@
     "yaml": "^1.7.2"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
     "create-test-server": "^3.0.1",
-    "mocha": "^7.0.1"
+    "cross-env": "^7.0.2",
+    "env-cmd": "^10.1.0",
+    "jest": "^25.1.0",
+    "tmp": "^0.1.0"
   },
   "bugs": {
     "url": "https://github.com/joseconstela/webparsy/issues"
