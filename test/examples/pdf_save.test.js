@@ -7,7 +7,7 @@ const init = require('../../index').init
 
 let server
 
-describe('example screenshot_save', () => {
+describe('example pdf_save', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -26,7 +26,7 @@ describe('example screenshot_save', () => {
   });
 
   it('should store valid file', async function () {
-    let tmpobj = tmp.fileSync({postfix: '.png'})
+    let tmpobj = tmp.fileSync({postfix: '.pdf'})
 
     let yml = `version: 1
 jobs:
@@ -34,7 +34,7 @@ jobs:
     steps:
       - goto: 
           url: ${server.url}
-      - screenshot:
+      - pdf:
           path: '${tmpobj.name}'
 `
     try {
