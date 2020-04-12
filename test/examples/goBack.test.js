@@ -1,12 +1,11 @@
 const createTestServer = require('create-test-server')
-const path = require('path')
+const init = require('../../index').init
 const fs = require('fs')
-
-const init = require('../../../index').init
+const path = require('path')
 
 let server
 
-describe('example weather', () => {
+describe('example html', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -16,7 +15,7 @@ describe('example weather', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -26,28 +25,19 @@ describe('example weather', () => {
     await server.close();
   });
 
-  it('should get temperature as number', async function () {
+  it('should return title from first page', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto:
-          url: ${server.url}
-      - title
-      - text:
-          selector: .cityName
-          as: city
-      - text:
-          selector: .temperature
-          type: number
-          as: temp
-`
+      - goto: ${server.url}
+      - goto: ${server.url}/page2.html
+      - goBack
+      - title`
     try {
-      let result = await init({string: yml});
+      let result = await init({string: yml})
       expect(result).toMatchObject({
-        city: 'RandomCity',
-        temp: 16.4,
-        title: 'Weather of RandomCity'
+        title: 'Shop Index'
       })
     }
     catch (ex) {

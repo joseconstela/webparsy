@@ -1,11 +1,11 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
+const init = require('../../index').init
 const fs = require('fs')
 const path = require('path')
 
 let server
 
-describe('example getRequest', () => {
+describe('example html', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -15,7 +15,7 @@ describe('example getRequest', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,14 +25,12 @@ describe('example getRequest', () => {
     await server.close();
   });
 
-  it('should return valid html using got library', async function () {
+  it('should return html containing in-site markup', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto:
-          url: ${server.url}
-          method: got
+      - goto: ${server.url}
       - html:
           as: page_html
       - html:

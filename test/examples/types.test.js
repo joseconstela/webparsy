@@ -2,11 +2,11 @@ const createTestServer = require('create-test-server')
 const path = require('path')
 const fs = require('fs')
 
-const init = require('../../../index').init
+const init = require('../../index').init
 
 let server
 
-describe('example transform', () => {
+describe('example types', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -16,7 +16,7 @@ describe('example transform', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/weather/${location}`)))
         })
         done()
       })
@@ -26,28 +26,37 @@ describe('example transform', () => {
     await server.close();
   });
 
-  it('should transform strings into upper and lower cases', async function () {
+  it('should transform temperature-like value in correct numbers', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto: 
+      - goto:
           url: ${server.url}
       - title
       - text:
-          selector: .cityName
-          as: city_uppercase
-          transform: uppercase
+          selector: .temperature span
+          type: number
+          as: temp_number
       - text:
-          selector: .cityName
-          as: city_lowercase
-          transform: lowercase
-`
+          selector: .temperature span
+          type: string
+          as: temp_string
+      - text:
+          selector: .temperature span
+          type: integer
+          as: temp_integer
+      - text:
+          selector: .temperature span
+          type: float
+          as: temp_float`
     try {
       let result = await init({string: yml});
       expect(result).toMatchObject({
-        city_lowercase: 'randomcity',
-        city_uppercase: 'RANDOMCITY'
+        temp_number: 16.4,
+        temp_string: '16.4°',
+        temp_integer: 16,
+        temp_float: 16.4
       })
     }
     catch (ex) {

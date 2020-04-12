@@ -1,13 +1,12 @@
 const createTestServer = require('create-test-server')
 const path = require('path')
 const fs = require('fs')
-const tmp = require('tmp')
 
-const init = require('../../../index').init
+const init = require('../../index').init
 
 let server
 
-describe('example pdf_save', () => {
+describe('example transform', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -17,7 +16,7 @@ describe('example pdf_save', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/weather/${location}`)))
         })
         done()
       })
@@ -27,24 +26,31 @@ describe('example pdf_save', () => {
     await server.close();
   });
 
-  it('should store valid file', async function () {
-    let tmpobj = tmp.fileSync({postfix: '.pdf'})
-
+  it('should transform strings into upper and lower cases', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
       - goto: 
           url: ${server.url}
-      - pdf:
-          path: '${tmpobj.name}'
+      - title
+      - text:
+          selector: .cityName
+          as: city_uppercase
+          transform: uppercase
+      - text:
+          selector: .cityName
+          as: city_lowercase
+          transform: lowercase
 `
     try {
       let result = await init({string: yml});
-      expect( fs.statSync(tmpobj.name)['size'] > 100 ).toBeTruthy()
+      expect(result).toMatchObject({
+        city_lowercase: 'randomcity',
+        city_uppercase: 'RANDOMCITY'
+      })
     }
     catch (ex) {
-      console.error(ex)
       expect(ex).toBeFalsy()
     }
   })

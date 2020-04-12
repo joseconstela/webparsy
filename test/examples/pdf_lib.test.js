@@ -1,11 +1,11 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
+const init = require('../../index').init
 const fs = require('fs')
 const path = require('path')
 
 let server
 
-describe('example html', () => {
+describe('example pdf_lib', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -15,7 +15,7 @@ describe('example html', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,23 +25,20 @@ describe('example html', () => {
     await server.close();
   });
 
-  it('should return html containing in-site markup', async function () {
+  it('should return valid file buffer', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto: ${server.url}
-      - html:
-          as: page_html
-      - html:
-          as: div_html
-          selector: '#articles'`
+      - goto: 
+          flag: url
+      - pdf:
+          as: pdfFile`
     try {
-      let result = await init({string: yml})
-      expect(result.page_html).toBeTruthy()
-      expect(result.div_html).toBeTruthy()
-      expect(result.page_html.includes('DOCTYPE html')).toBeTruthy()
-      expect(result.div_html.includes('articleA')).toBeTruthy()
+      let result = await init({string: yml, flags: {
+        url: server.url
+      }});
+      expect(Buffer.isBuffer(result.pdfFile)).toBeTruthy()
     }
     catch (ex) {
       expect(ex).toBeFalsy()

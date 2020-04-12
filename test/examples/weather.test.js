@@ -1,13 +1,12 @@
 const createTestServer = require('create-test-server')
 const path = require('path')
 const fs = require('fs')
-const tmp = require('tmp')
 
-const init = require('../../../index').init
+const init = require('../../index').init
 
 let server
 
-describe('example screenshot_save_path', () => {
+describe('example weather', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -17,7 +16,7 @@ describe('example screenshot_save_path', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/weather/${location}`)))
         })
         done()
       })
@@ -27,24 +26,31 @@ describe('example screenshot_save_path', () => {
     await server.close();
   });
 
-  it('should store valid file', async function () {
-    let tmpobj = tmp.fileSync({postfix: '.png'})
-
+  it('should get temperature as number', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto: 
+      - goto:
           url: ${server.url}
-      - screenshot:
-          path: '${tmpobj.name}'
+      - title
+      - text:
+          selector: .cityName
+          as: city
+      - text:
+          selector: .temperature
+          type: number
+          as: temp
 `
     try {
       let result = await init({string: yml});
-      expect( fs.statSync(tmpobj.name)['size'] > 100 ).toBeTruthy()
+      expect(result).toMatchObject({
+        city: 'RandomCity',
+        temp: 16.4,
+        title: 'Weather of RandomCity'
+      })
     }
     catch (ex) {
-      console.error(ex)
       expect(ex).toBeFalsy()
     }
   })

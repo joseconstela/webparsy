@@ -1,11 +1,11 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
+const init = require('../../index').init
 const fs = require('fs')
 const path = require('path')
 
 let server
 
-describe('example html', () => {
+describe('example getRequest', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -15,7 +15,7 @@ describe('example html', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,20 +25,25 @@ describe('example html', () => {
     await server.close();
   });
 
-  it('should return title from first page', async function () {
+  it('should return valid html using got library', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto: ${server.url}
-      - goto: ${server.url}/page2.html
-      - goBack
-      - title`
+      - goto:
+          url: ${server.url}
+          method: got
+      - html:
+          as: page_html
+      - html:
+          as: div_html
+          selector: '#articles'`
     try {
       let result = await init({string: yml})
-      expect(result).toMatchObject({
-        title: 'Shop Index'
-      })
+      expect(result.page_html).toBeTruthy()
+      expect(result.div_html).toBeTruthy()
+      expect(result.page_html.includes('doctype html')).toBeTruthy()
+      expect(result.div_html.includes('articleA')).toBeTruthy()
     }
     catch (ex) {
       expect(ex).toBeFalsy()

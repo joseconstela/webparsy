@@ -1,11 +1,11 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
+const init = require('../../index').init
 const fs = require('fs')
 const path = require('path')
 
 let server
 
-describe('example many_using_get', () => {
+describe('example many', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -15,7 +15,7 @@ describe('example many_using_get', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,14 +25,12 @@ describe('example many_using_get', () => {
     await server.close();
   });
 
-  it('should return valid list of elements using get', async function () {
+  it('should return valid list of elements', async function () {
     let yml = `version: 1
 jobs:
   main:
     steps:
-      - goto:
-          url: ${server.url}
-          method: got
+      - goto: ${server.url}
       - many: 
           as: listOfArticles
           selector: '#articles ul li'

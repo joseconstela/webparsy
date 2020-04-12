@@ -1,7 +1,8 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
+const init = require('../../index').init
 const fs = require('fs')
 const path = require('path')
+const tmp = require('tmp')
 
 let server
 
@@ -15,7 +16,7 @@ describe('example pdf_lib', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,7 +26,9 @@ describe('example pdf_lib', () => {
     await server.close();
   });
 
-  it('should return valid file buffer', async function () {
+  it('should store valid file from flag', async function () {
+    let tmpobj = tmp.fileSync({postfix: '.png'})
+
     let yml = `version: 1
 jobs:
   main:
@@ -33,12 +36,14 @@ jobs:
       - goto: 
           flag: url
       - pdf:
-          as: pdfFile`
+          path:
+            flag: pdfFileLocation`
     try {
       let result = await init({string: yml, flags: {
-        url: server.url
+        url: server.url,
+        pdfFileLocation: tmpobj.name
       }});
-      expect(Buffer.isBuffer(result.pdfFile)).toBeTruthy()
+      expect( fs.statSync(tmpobj.name)['size'] > 100 ).toBeTruthy()
     }
     catch (ex) {
       expect(ex).toBeFalsy()

@@ -1,11 +1,13 @@
 const createTestServer = require('create-test-server')
-const init = require('../../../index').init
-const fs = require('fs')
 const path = require('path')
+const fs = require('fs')
+const tmp = require('tmp')
+
+const init = require('../../index').init
 
 let server
 
-describe('example screenshot_lib', () => {
+describe('example screenshot_save_path', () => {
   
   beforeEach(done => {
     createTestServer()
@@ -15,7 +17,7 @@ describe('example screenshot_lib', () => {
           res.setHeader('content-type', 'text/html')
           let location = req._parsedUrl.href
           if (location === '/') location = 'index.html'
-          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
+          res.send(fs.readFileSync(path.resolve(__dirname, `../websites/shop/${location}`)))
         })
         done()
       })
@@ -25,23 +27,24 @@ describe('example screenshot_lib', () => {
     await server.close();
   });
 
-  it('should return valid file buffer', async function () {
+  it('should store valid file', async function () {
+    let tmpobj = tmp.fileSync({postfix: '.png'})
+
     let yml = `version: 1
 jobs:
   main:
     steps:
       - goto: 
-          flag: url
+          url: ${server.url}
       - screenshot:
-          as: image
-          fullPage: true`
+          path: '${tmpobj.name}'
+`
     try {
-      let result = await init({string: yml, flags: {
-        url: server.url
-      }});
-      expect(Buffer.isBuffer(result.image)).toBeTruthy()
+      let result = await init({string: yml});
+      expect( fs.statSync(tmpobj.name)['size'] > 100 ).toBeTruthy()
     }
     catch (ex) {
+      console.error(ex)
       expect(ex).toBeFalsy()
     }
   })
