@@ -56,13 +56,7 @@ const transform = (value, type, defalutValue, url) => {
       return value.toLowerCase()
     case 'absoluteurl':
       if (typeof value !== 'string') return value
-      try {
-        return new URL(value, url).href
-      }
-      catch (ex) {
-        console.log({ex})
-        return value
-      }
+      return new URL(value, url).href
     default:
       return value
   }

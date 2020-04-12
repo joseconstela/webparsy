@@ -8,6 +8,17 @@ describe('parser', function () {
       expect(v).toBe('default value')
     })
 
+    it('should return buffer from buffer', function () {
+      let buf = Buffer.from('123')
+      let v = parser.cast(buf, 'buffer', defaultVal) 
+      expect(Buffer.isBuffer(v)).toBe(true)
+    })
+
+    it('should return buffer from string', function () {
+      let v = parser.cast('123', 'buffer', defaultVal) 
+      expect(Buffer.isBuffer(v)).toBe(true)
+    })
+
     it('should return default value from null', function () {
       let v = parser.cast(null, 'string', defaultVal) 
       expect(v).toBe('default value')
