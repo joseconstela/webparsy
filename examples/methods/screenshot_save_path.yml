@@ -5,3 +5,4 @@ jobs:
       - goto: https://github.com
       - screenshot:
           path: '/Users/joseconstela/git/webparsy/Github.png'
+          fullPage: true

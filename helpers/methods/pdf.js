@@ -6,17 +6,23 @@ const cheerio = require('../cheerio')
 const schema = {
   method: 'pdf',
   process: async (flags, page, params, html, usingPuppeteer) => {
+    if (!params.path && !params.as)
+      throw new Error('pdf requires `as` or `path` parameter')
+
+    if (params.path) {
+      const { path, ...options } = params
+      if (!options) options = {}
+      if (path.flag) options.path = flags[path.flag]
+      else options.path = path
+      debug('String PDF in', options.path)
+      await page.pdf(options)
+    }
+
     if (params.as) {
-      debug('Requesting pdf as', params.as)
-      let { as, ...pdfOptions } = params
-      return await page.pdf(pdfOptions)
-    }
-    else if (params) {
-      debug('Requesting pdf', JSON.stringify(params))
-      await page.pdf(params)
-    }
-    else {
-      throw new Error('incorrect-pdf-options')
+      const { as, ...options } = params
+      delete options.path
+      debug('Creating PDF as', params.as)
+      return await page.pdf(options || {})
     }
   },
   output: (flags, raw, params, url) => {
