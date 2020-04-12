@@ -1,10 +1,10 @@
 const createTestServer = require('create-test-server');
 
-const init = require('../index').init
+const init = require('../../index').init
 
 let server
 
-describe('basic authentication', () => {
+describe('example basicauth', () => {
   
   beforeEach(async () => {
     server = await createTestServer();
