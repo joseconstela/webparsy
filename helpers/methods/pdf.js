@@ -1,7 +1,6 @@
 const debug = require('debug')('webparsy:methods:pdf')
 
 const parser = require('../parser')
-const cheerio = require('../cheerio')
 
 const schema = {
   method: 'pdf',

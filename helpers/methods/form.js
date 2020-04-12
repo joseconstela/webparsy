@@ -16,7 +16,6 @@ const schema = {
       if (field.value.env) fieldClone.value = process.env[field.value.env]
 
       await page.evaluate((data) => {
-        debug('Setting', data.field.value, 'for', `${data.params.selector || 'form'} ${data.field.selector}`)
         document.querySelector(`${data.params.selector || 'form'} ${data.field.selector}`).value = data.field.value
       }, { params, field: fieldClone })
     }))

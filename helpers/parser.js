@@ -57,10 +57,10 @@ const transform = (value, type, defalutValue, url) => {
     case 'absoluteurl':
       if (typeof value !== 'string') return value
       try {
-        console.log({url, value, result: new URL(url, value).href})
-        return new URL(url, value).href
+        return new URL(value, url).href
       }
       catch (ex) {
+        console.log({ex})
         return value
       }
     default:

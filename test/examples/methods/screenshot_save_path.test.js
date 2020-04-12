@@ -3,30 +3,32 @@ const path = require('path')
 const fs = require('fs')
 const tmp = require('tmp')
 
-const init = require('../../index').init
+const init = require('../../../index').init
 
 let server
 
-describe('example pdf_save', () => {
+describe('example screenshot_save_path', () => {
   
   beforeEach(done => {
     createTestServer()
       .then(_server => {
         server = _server
-        server.get('/', async (req, res) => {
-          res.setHeader('content-type', 'text/html');
-          res.send(fs.readFileSync(path.resolve(__dirname, '../websites/weather/index.html')))
+        server.get('/*', async (req, res) => {
+          res.setHeader('content-type', 'text/html')
+          let location = req._parsedUrl.href
+          if (location === '/') location = 'index.html'
+          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
         })
         done()
       })
-  });
+  })
 
   afterEach(async () => {
     await server.close();
   });
 
   it('should store valid file', async function () {
-    let tmpobj = tmp.fileSync({postfix: '.pdf'})
+    let tmpobj = tmp.fileSync({postfix: '.png'})
 
     let yml = `version: 1
 jobs:
@@ -34,7 +36,7 @@ jobs:
     steps:
       - goto: 
           url: ${server.url}
-      - pdf:
+      - screenshot:
           path: '${tmpobj.name}'
 `
     try {

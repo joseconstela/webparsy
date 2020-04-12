@@ -2,7 +2,7 @@ const createTestServer = require('create-test-server')
 const path = require('path')
 const fs = require('fs')
 
-const init = require('../../index').init
+const init = require('../../../index').init
 
 let server
 
@@ -12,14 +12,15 @@ describe('example types', () => {
     createTestServer()
       .then(_server => {
         server = _server
-        server.get('/', async (req, res) => {
-          res.setHeader('content-type', 'text/html');
-          res.send(fs.readFileSync(path.resolve(__dirname, '../websites/weather/index.html')))
+        server.get('/*', async (req, res) => {
+          res.setHeader('content-type', 'text/html')
+          let location = req._parsedUrl.href
+          if (location === '/') location = 'index.html'
+          res.send(fs.readFileSync(path.resolve(__dirname, `../../websites/shop/${location}`)))
         })
         done()
       })
-    
-  });
+  })
 
   afterEach(async () => {
     await server.close();

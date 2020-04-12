@@ -1,7 +1,5 @@
 const debug = require('debug')('webparsy:methods:waitFor')
 
-const parser = require('../parser')
-
 const schema = {
   method: 'waitFor',
   process: async (flags, page, params, html, usingPuppeteer) => {
