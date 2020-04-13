@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather of RandomCity</title>
+
+    <script>
+      const city = name => {
+        document.querySelector('#result .cityName').innerHTML = `City of ${name}`
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Weather of RandomCity</h1>
+
+    <div id="page">
+
+      <ul id="cities">
+        <li class="madrid" onclick="city('Madrid')">Madrid</li>
+        <li class="barcelona" onclick="city('Barcelona')">Barcelona</li>
+      </ul>
+
+      <ul id="result">
+        <li class="cityName">RandomCity</li>
+        <li class="temperature">
+          <span class="">16.4<sup>°</sup></span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

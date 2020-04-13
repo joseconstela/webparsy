@@ -44,7 +44,7 @@ const getPageHtml = async (flags, step, _html, page) => {
     //     url: example.com
 
     const auth = authentication(step)
-
+    
     const url = step.goto.flag ? flags[step.goto.flag] : step.goto.url ? step.goto.url : step.goto
     currentPageUrl = url
 
@@ -89,26 +89,24 @@ const getPageHtml = async (flags, step, _html, page) => {
  * @param {string} html 
  */
 const exec = async (flags, step, page, html) => {
-  debug('----------------------------')
-  debug(`Exec ${JSON.stringify(step)}`)
+  debug(`Exec                ${JSON.stringify(step)}`)
 
   // Raw response from 
   let raw
 
   let methodName = getMethodName(step)
-  debug(`Method name ${methodName}`)
+  debug(`Method:             ${methodName}`)
   const usedMethod = methods[methodName]
 
   if (!usedMethod) {
     error(`Step method ${methodName} not supported`, true, 5)
   }
 
-  debug(`Method ${JSON.stringify(usedMethod)}`)
-  debug(`puppeteer ${!!usedMethod.puppeteer}`)
-  debug(`process ${!!usedMethod.process}`)
+  debug(`Uses puppeteer API: ${!!usedMethod.puppeteer}`)
+  debug(`Has process method: ${!!usedMethod.process}`)
 
   let parameters = step[methodName] || {}
-  debug(`Parameters ${JSON.stringify(parameters)}`)
+  debug(`Parameters          ${JSON.stringify(parameters)}`)
   
   if (usedMethod.puppeteer) {
     if (!usingPuppeteer) throw new Error(`${methodName} requires using puppeteer to browse pages`)
@@ -119,7 +117,11 @@ const exec = async (flags, step, page, html) => {
   }
 
   const result = usedMethod.output ? usedMethod.output(flags, raw, parameters, currentPageUrl) : null
-  return { raw, result }
+  if (!result) return { raw, result }
+
+  if (result.type === 'output') return { raw, result: result.data }
+  if (result.type === 'flag') return { raw, flag: result.data }
+  throw new Error('unknown-result-type')
 }
 
 module.exports.exec = exec

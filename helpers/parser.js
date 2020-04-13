@@ -15,31 +15,23 @@ const cast = (value, type, defaultValue) => {
     case 'buffer':
       if (Buffer.isBuffer(value)) return value
       return Buffer.from(value)
-      break;
     case 'string':
       r = value.toString().trim()
       if (r === '') r = defaultValue
       return r
-      break;
     case 'number':
       r = Number(value)
       return r ? r : Number(parseFloat(value)) || parseInt(value)
-      break;
     case 'integer':
       return parseInt(value)
-      break;
     case 'float':
       return parseFloat(value)
-      break;
     case 'fdc':
       return parseFloat(value.replace(/\./g, '').replace(/\,/g, '.'))
-      break;
     case 'fcd':
       return parseFloat(value.replace(/\,/g, ''))
-      break;
     default:
       return value
-      break;
   }
 }
 
@@ -59,23 +51,14 @@ const transform = (value, type, defalutValue, url) => {
     case 'uppercase':
       if (typeof value !== 'string') return value
       return value.toUpperCase()
-      break;
     case 'lowercase':
       if (typeof value !== 'string') return value
       return value.toLowerCase()
-      break;
     case 'absoluteurl':
       if (typeof value !== 'string') return value
-      try {
-        return new URL(value, url).href
-      }
-      catch (ex) {
-        return value
-      }
-      break;
+      return new URL(value, url).href
     default:
       return value
-      break;
   }
 }
 

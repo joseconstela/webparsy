@@ -1,3 +1,5 @@
+const debug = require('debug')('webparsy:methods:many')
+
 const parser = require('../parser')
 const cheerio = require('../cheerio')
 const steps = require('../steps')
@@ -30,6 +32,7 @@ const schema = {
       let v = await runElement(flags, page, params, $, elem)
 
       if (params.event) {
+        debug('Emitting event', params.event)
         process.emit(params.event, v);
         if (params.eventMethod === 'discard') {
           elements = params.eventMethod
@@ -38,12 +41,16 @@ const schema = {
       }
 
       return elements.push(v)
-
     }))
 
     return elements
   },
-  output: (flags, raw, params, url) => parser.outputVal(raw, params, null, url)
+  output: (flags, raw, params, url) => {
+    return {
+      type: 'output',
+      data: parser.outputVal(raw, params, null, url)
+    }
+  }
 }
 
 module.exports = schema

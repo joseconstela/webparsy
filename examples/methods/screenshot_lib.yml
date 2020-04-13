@@ -6,3 +6,4 @@ jobs:
           flag: url
       - screenshot:
           as: image
+          fullPage: true

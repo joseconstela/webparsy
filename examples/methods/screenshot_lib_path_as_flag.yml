@@ -1,0 +1,10 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: 
+          flag: url
+      - screenshot:
+          path:
+            flag: screenshotLocation
+          fullPage: true

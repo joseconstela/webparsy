@@ -77,14 +77,33 @@ const init = async (program) => {
   const defaultSteps = definition.cfg(def, 'main', 'steps')
   debug('Get definition steps')
   try {
-    const runSteps = async allSteps => {
+    const runSteps = async (allSteps, taskFlags) => {
       for (singleStep of allSteps) {
         if (singleStep.run) {
-          const subSteps = definition.cfg(def, singleStep.run, 'steps')
-          await runSteps(subSteps)
+          const subTask = definition.cfg(def, singleStep.run)
+          const subTaskSteps = subTask.steps
+          const subTaskLoop = subTask.loop
+          if (subTaskLoop) {
+            if (!program.flags[subTaskLoop]) throw new Error('loop-undefined')
+            for (item of program.flags[subTaskLoop]) {
+              console.log(item)
+              await runSteps(subTaskSteps, item)
+              continue;
+            }
+          }
+          else {
+            await runSteps(subTaskSteps)
+            continue;
+          }
         }
-        let stepResult = await steps.exec(program.flags, singleStep, page)
-        output = Object.assign({}, output, stepResult.result || {})
+
+        let stepResult = await steps.exec(taskFlags || program.flags, singleStep, page)
+        if (stepResult.result) {
+          output = Object.assign({}, output, stepResult.result || {})
+        }
+        else if (stepResult.flag) {
+          program.flags = Object.assign({}, program.flags, stepResult.flag)
+        }
       }
     }
     await runSteps(defaultSteps)

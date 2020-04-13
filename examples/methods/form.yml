@@ -9,5 +9,6 @@ jobs:
           fill:
             - selector: '[name="q"]'
               value: test
+      - waitForNavigation
       - screenshot:
           path: Google_search.png

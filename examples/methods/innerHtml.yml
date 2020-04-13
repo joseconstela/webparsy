@@ -1,0 +1,9 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - goto: http://example.com
+      - click: '#cities .madrid'
+      - innerHtml:
+          as: containerText
+          selector: .cityName
