@@ -19,9 +19,9 @@ module.exports.loadString = loadString
  * 
  * @param {string} file 
  */
-const loadFile = async (file) => {
+const loadFile = async (file, fullPath) => {
   const defRaw = await fs.readFileSync(
-    path.join(process.cwd(), file),
+    fullPath ? file : path.join(process.cwd(), file),
     'utf-8'
   )
   return loadString(defRaw)
@@ -34,10 +34,11 @@ module.exports.loadFile = loadFile
  * 
  * @param {object} def The parsed yaml definition
  */
-const validate = async (def) => {
+const validate = async def => {
   if (!def.jobs) fatal('No jobs found')
   if (!def.jobs.main) fatal('No main job found')
-  if (!def.jobs.main.steps) fatal('No main job found')
+  if (!def.jobs.main.steps) fatal('No main job steps found')
+  return true
 }
 
 module.exports.validate = validate
