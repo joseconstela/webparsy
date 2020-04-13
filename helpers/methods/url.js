@@ -6,7 +6,7 @@ const schema = {
   output: (flags, raw, params, url) => {
     return {
       type: 'output',
-      data: parser.outputVal(raw, params, 'title', url)
+      data: parser.outputVal(raw, params, 'url', url)
     }
   }
 }

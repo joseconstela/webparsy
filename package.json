@@ -16,6 +16,7 @@
     "web scraper"
   ],
   "scripts": {
+    "test-no-coverage": "cross-env NODE_ENV=test env-cmd -f .env --no-override jest",
     "test": "cross-env NODE_ENV=test env-cmd -f .env --no-override jest --coverage"
   },
   "bin": {

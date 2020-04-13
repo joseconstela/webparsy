@@ -87,6 +87,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
+  * [innerHtml](#innerHtml) Return the 'visible' HTML code for a dom element
   * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
   * [type](#type) Types a text (key events) in a given selector
@@ -257,6 +258,7 @@ This can be:
   * [title](#title) Gets the title for the current page.
   * [form](#form) Fill and submit forms
   * [html](#html) Return HTML code for the page or a DOM element
+  * [innerHtml](#innerHtml) Return the 'visible' HTML code for a dom element
   * [click](#click) Click on an element (CSS and xPath selectors)
   * [url](#url) Return the current URL
   * [type](#type) Types a text (key events) in a given selector
@@ -461,6 +463,23 @@ Example:
 ```yaml
 - html
     as: divHtml
+    selector: div
+```
+
+## innerHtml
+
+Gets the innet HTML code for an element.
+[example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/innerHtml.yml)
+
+This is useful when the javascript code of a page has changed the contents of
+DOM, and you need to grab the actual HTML that a normal user would be
+interacting with, instead the source code's html.
+
+Example:
+
+```yaml
+- innerHtml
+    as: divInnerHtml
     selector: div
 ```
 

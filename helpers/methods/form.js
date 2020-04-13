@@ -23,7 +23,6 @@ const schema = {
     if (params.submit) {
       debug('Submitting')
       await page.$eval(params.selector || 'form', form => form.submit())
-      await page.waitForNavigation()
     }
   }
 }
