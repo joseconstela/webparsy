@@ -278,8 +278,9 @@ direct HTTP request via got. This will perform much faster, but it may not be
 suitable for websites that requires JavaScript. [simple example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/getRequest.yml) / 
 [extended example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/many_using_get.yml)
 
-Note that some methods (for example: `form`, `click` and others) will not be
-available if you are not browsing using puppeteer.
+Note that some methods that allows you to interact with a website (for example:
+`form`, `click` and others) will not be be available if you specify to visit a
+url via `got`:
 
 ```yaml
 - goto:
@@ -287,21 +288,21 @@ available if you are not browsing using puppeteer.
     method: got
 ```
 
-You can also tell WebParsy which urls it should visit via flags (available via
-cli and library). Example:
+You can tell WebParsy which urls it should visit via flags. For example for the
+following definition:
 
 ```yaml
 - goto:
     flag: websiteUrl
 ```
 
-You can then call webparsy as:
+you can then specify the URL to be visited as
 
 ```bash
 webparsy definition.yaml --websiteUrl "https://google.com"
 ```
 
-or 
+or via the javascript library as:
 
 ```javascript
 webparsy.init({
@@ -314,7 +315,8 @@ webparsy.init({
 
 ### Authentication
 
-You can perform basic HTTP authentication by providing the user and password as in the following example:
+You can perform basic HTTP authentication by providing the user and password as
+in the following example:
 
 ```yml
 - goto: 
@@ -326,6 +328,7 @@ You can perform basic HTTP authentication by providing the user and password as 
       password: my_password
 ```
 
+The authentication mechanism works for both puppeteer and `got` scrapping.
 
 ## run
 

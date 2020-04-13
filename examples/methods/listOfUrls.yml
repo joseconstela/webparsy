@@ -7,7 +7,7 @@ jobs:
       headless: false
       keepOpen: true
     steps:
-      - goto: 'file:///Users/joseconstela/git/webparsy/test/website/index.html'
+      - goto: 'file:///.../shop/index.html'
       - run: getListOfPages
       - run: visitPages
   getListOfPages:
