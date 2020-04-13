@@ -5,7 +5,6 @@ const schema = {
   process: async (flags, page, params, html) => {
     const { key, options } = params
     if (!key) throw new Error('incorrect-keyboardPress-options')
-
     debug('Pressing', key, `${options? JSON.stringify(options) : {}}`)
     await page.keyboard.press(key, options || {})
   }

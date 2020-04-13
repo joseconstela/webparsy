@@ -5,6 +5,7 @@ const parser = require('../parser')
 const schema = {
   method: 'innerHtml',
   process: async (flags, page, params, html, usingPuppeteer) => {
+    if (!params) throw new Error('incorrect-innerHtml-options')
     let selector = params
     if (selector.selector) selector = selector.selector
     debug('Getting innerHtml for', selector)

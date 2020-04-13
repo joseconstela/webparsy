@@ -16,8 +16,8 @@
     "web scraper"
   ],
   "scripts": {
-    "test-no-coverage": "cross-env NODE_ENV=test env-cmd -f .env --no-override jest",
-    "test": "cross-env NODE_ENV=test env-cmd -f .env --no-override jest --coverage"
+    "test-with-coverage": "jest --coverage",
+    "test": "jest"
   },
   "bin": {
     "webparsy": "cli.js"
@@ -48,6 +48,7 @@
     "cross-env": "^7.0.2",
     "env-cmd": "^10.1.0",
     "jest": "^25.3.0",
+    "jest-puppeteer": "^4.4.0",
     "tmp": "^0.1.0"
   },
   "bugs": {
@@ -57,6 +58,9 @@
     "test": "test"
   },
   "jest": {
-    "collectCoverage": false
+    "collectCoverage": false,
+    "preset": "jest-puppeteer",
+    "coveragePathIgnorePatterns": [
+    ]
   }
 }
