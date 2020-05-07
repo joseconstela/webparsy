@@ -38,7 +38,7 @@
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "got": "^9.6.0",
-    "puppeteer": "2.0.0",
+    "puppeteer": "3.0.4",
     "puppeteer-core": "^2.1.1",
     "yaml": "^1.7.2"
   },
