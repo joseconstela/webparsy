@@ -77,6 +77,7 @@ Don't panic. There are examples for all WebParsy features in the examples folder
 - [Types](#types)
 - [Multi-jobs](#multi-jobs-support)
 - [Steps](#steps)
+  * [setContent](#setContent) Sets the HTML markup to assign to the page.
   * [goto](#goto) Navigate to an URL
   * [run](#run) Runs a group of steps by its name.
   * [goBack](#goBack) Navigate to the previous page in history
@@ -247,6 +248,7 @@ Steps are the list of things the browser must do.
 
 This can be:
 
+  * [setContent](#setContent) Sets the HTML markup to assign to the page.
   * [goto](#goto) Navigate to an URL
   * [run](#run) Runs a group of steps by its name.
   * [goBack](#goBack) Navigate to the previous page in history
@@ -262,6 +264,26 @@ This can be:
   * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
   * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
+
+## setContent
+
+Sets the HTML markup to assign to the page.
+
+Accepts either an string or a file to load the markup from.
+
+Setting a string:
+
+```yaml
+- setContent:
+    html: Hello!
+```
+
+Loading the HTML from a file:
+
+```yaml
+- setContent:
+    file: myMarkup.html
+```
 
 ## goto
 

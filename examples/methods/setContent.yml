@@ -1,0 +1,8 @@
+version: 1
+jobs:
+  main:
+    steps:
+      - setContent:
+          html: Hello!
+      - pdf:
+          file: setContent.pdf
