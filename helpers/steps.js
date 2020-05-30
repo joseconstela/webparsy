@@ -82,6 +82,16 @@ const getPageHtml = async (flags, step, _html, page) => {
       const html = await fs.readFileSync(parameters.file)
       await page.setContent(html)
     }
+    else if (parameters.env) {
+      let html = undefined
+      if (parameters.env) html = process.env[parameters.env]
+      await page.setContent(html)
+    }
+    else if (parameters.flag) {
+      let html = undefined
+      if (parameters.flag) html = flags[parameters.flag]
+      await page.setContent(html)
+    }
     else {
       throw new Error('Incorrect-setCotent-options')
     }

@@ -29,11 +29,10 @@ const init = async (program) => {
     def = await definition.loadString(program.string)
   }
 
-  // YAML
-  else if (program.yaml) {
-    def = program.yaml
+  // YAML/JSON
+  else if (program.yaml || program.json) {
+    def = program.yaml || program.json
   }
-
 
   // No definition
   else {

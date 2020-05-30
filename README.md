@@ -269,8 +269,6 @@ This can be:
 
 Sets the HTML markup to assign to the page.
 
-Accepts either an string or a file to load the markup from.
-
 Setting a string:
 
 ```yaml
@@ -283,6 +281,20 @@ Loading the HTML from a file:
 ```yaml
 - setContent:
     file: myMarkup.html
+```
+
+Loading the HTML from a environment variable:
+
+```yaml
+- setContent:
+    env: MY_MARKUP_ENVIRONMENT_VARIABLE
+```
+
+Loading the HTML from a flag:
+
+```yaml
+- setContent:
+    flag: markup
 ```
 
 ## goto

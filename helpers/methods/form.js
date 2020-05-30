@@ -11,7 +11,7 @@ const schema = {
       // Check if the value is pointing to an environment variable
       if (field.value.env) fieldClone.value = process.env[field.value.env]
 
-      await page.evaluate((data) => {
+      await page.evaluate(data => {
         document.querySelector(`${data.params.selector || 'form'} ${data.field.selector}`).value = data.field.value
       }, { params, field: fieldClone })
     }))
