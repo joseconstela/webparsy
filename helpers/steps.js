@@ -1,5 +1,6 @@
 const debug = require('debug')('webparsy:steps')
 
+const fs = require('fs')
 const got = require('got')
 
 const error = require('./err').error
@@ -72,6 +73,21 @@ const getPageHtml = async (flags, step, _html, page) => {
       currentPageHtml = await page.content()
     }
   }
+  else if (getMethodName(step) === 'setContent') {
+    let parameters = step[getMethodName(step)] || {}
+    if (parameters.html) {
+      await page.setContent(parameters.html)
+    }
+    else if (parameters.file) {
+      const html = await fs.readFileSync(parameters.file)
+      await page.setContent(html)
+    }
+    else {
+      throw new Error('Incorrect-setCotent-options')
+    }
+    currentPageHtml = await page.content()
+    currentPageUrl = page.url()
+  }
   else {
     if (usingPuppeteer && currentPageUrl !== page.url()) {
       currentPageHtml = await page.content()
@@ -109,7 +125,7 @@ const exec = async (flags, step, page, html) => {
 
   let parameters = step[methodName] || {}
   debug(`Parameters ${JSON.stringify(parameters)}`)
-  
+
   if (usedMethod.puppeteer) {
     if (!usingPuppeteer) throw new Error(`${methodName} requires using puppeteer to browse pages`)
     raw = parameters ? await page[methodName](parameters) : await page[methodName]()
