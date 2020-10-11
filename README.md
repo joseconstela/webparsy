@@ -1,4 +1,7 @@
 # ![WebPary logo](logo.png)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Fast and light NodeJS library and cli to scrape and interact with websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) ([or not](#goto)) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
 
@@ -586,3 +589,22 @@ Simulates the press of a keyboard key. [extended docs](https://github.com/puppet
 ## License
 
 MIT © [Jose Constela](https://joseconstela.com)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Dumi-k"><img src="https://avatars0.githubusercontent.com/u/23239829?v=4" width="100px;" alt=""/><br /><sub><b>Dumi-k</b></sub></a><br /><a href="https://github.com/joseconstela/webparsy/issues?q=author%3ADumi-k" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
