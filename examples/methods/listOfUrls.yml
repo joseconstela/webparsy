@@ -7,14 +7,14 @@ jobs:
       headless: false
       keepOpen: true
     steps:
-      - goto: 'file:///.../shop/index.html'
+      - goto: 'http://localhost:8000'
       - run: getListOfPages
       - run: visitPages
   getListOfPages:
     steps:
       - listUrls:
           as: pages
-          selector: '#pages'
+          selector: '#pages li'
           element:
             as: pageUrl
             selector: a
@@ -32,7 +32,7 @@ jobs:
     steps:
       - listUrls: 
           as: articlesUrls
-          selector: '#articles'
+          selector: '#articles li'
           element:
             as: url
             selector: a
