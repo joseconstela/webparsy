@@ -79,7 +79,7 @@ const getPageHtml = async (flags, step, _html, page) => {
       await page.setContent(parameters.html)
     }
     else if (parameters.file) {
-      const html = await fs.readFileSync(parameters.file)
+      const html = await fs.readFileSync(parameters.file, 'utf-8')
       await page.setContent(html)
     }
     else if (parameters.env) {
