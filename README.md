@@ -61,15 +61,25 @@ _Return an array with Github's tools, and creates a PDF. Example output:_
 
 Don't panic. There are examples for all WebParsy features in the examples folder. This are as basic as possible to help you get started.
 
-<div>
-	<p>
-    <sup>Support my work,</sup>
-		<br>
-		<a href="https://www.patreon.com/joseconstela">
-			<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-		</a>
-  </p>
-</div>
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Dumi-k"><img src="https://avatars0.githubusercontent.com/u/23239829?v=4" width="100px;" alt=""/><br /><sub><b>Dumi-k</b></sub></a><br /><a href="https://github.com/joseconstela/webparsy/issues?q=author%3ADumi-k" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ##### Table of Contents
 
@@ -589,22 +599,3 @@ Simulates the press of a keyboard key. [extended docs](https://github.com/puppet
 ## License
 
 MIT © [Jose Constela](https://joseconstela.com)
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/Dumi-k"><img src="https://avatars0.githubusercontent.com/u/23239829?v=4" width="100px;" alt=""/><br /><sub><b>Dumi-k</b></sub></a><br /><a href="https://github.com/joseconstela/webparsy/issues?q=author%3ADumi-k" title="Bug reports">🐛</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
