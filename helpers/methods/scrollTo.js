@@ -1,10 +1,8 @@
-const parser = require('../parser')
-
 const schema = {
   method: 'scrollTo',
   process: async (flags, page, params, html, usingPuppeteer) => {
     if (!usingPuppeteer) throw new Error(`scroll requires using puppeteer to browse pages`)
-    
+
     if (params.bottom) {
       return await page.evaluate(_ => {
         window.scrollTo(0,document.body.scrollHeight);
