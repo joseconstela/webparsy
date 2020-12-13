@@ -1,6 +1,6 @@
 # ![WebPary logo](logo.png)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Fast and light NodeJS library and cli to scrape and interact with websites using [Puppeteer](https://github.com/GoogleChrome/puppeteer) ([or not](#goto)) and [YAML definitions](https://en.wikipedia.org/wiki/YAML)
@@ -72,6 +72,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/Dumi-k"><img src="https://avatars0.githubusercontent.com/u/23239829?v=4" width="100px;" alt=""/><br /><sub><b>Dumi-k</b></sub></a><br /><a href="https://github.com/joseconstela/webparsy/issues?q=author%3ADumi-k" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.kiliancm.fr"><img src="https://avatars3.githubusercontent.com/u/45060645?v=4" width="100px;" alt=""/><br /><sub><b>KilianCM</b></sub></a><br /><a href="#ideas-KilianCM" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
