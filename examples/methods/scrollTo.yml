@@ -1,0 +1,25 @@
+version: 1
+jobs:
+  main:
+    browser:
+      headless: false
+    steps:
+      - goto: https://github.com/marketplace?category=code-quality
+      - scrollTo:
+          y: 300
+      - waitFor:
+          time: 2000
+      - scrollTo:
+          bottom: true
+      - waitFor:
+          time: 2000
+      - scrollTo:
+          top: true
+      - waitFor:
+          time: 2000
+      - scrollTo:
+          selector: .footer
+      - waitFor:
+          time: 2000
+      - scrollTo:
+          xPath: //*[@id="js-pjax-container"]/div[2]/div[1]/form/input[2]
