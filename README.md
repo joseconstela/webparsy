@@ -107,6 +107,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
   * [type](#type) Types a text (key events) in a given selector
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
   * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
+  * [scrollTo](#scrollTo) Scroll to bottom, top, x, y, selector, xPath before continuing
 
 ## Overview
 
@@ -595,6 +596,42 @@ Simulates the press of a keyboard key. [extended docs](https://github.com/puppet
 ```yaml
 - keyboardPress: 
     key: 'Enter'
+```
+
+## scrollTo
+
+Scoll to specified CSS, XPath selectors, to bottom/top or to specified x/y value before continuing [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/scrollTo.yml)
+
+Examples: 
+
+```yaml
+- scrollTo:
+   top: true
+```
+
+```yaml
+- scrollTo:
+   bottom: true
+```
+
+```yaml
+- scrollTo:
+   x: 340
+```
+
+```yaml
+- scrollTo:
+   y: 500
+```
+
+```yaml
+- scrollTo:
+   selector: "#search-results"
+```
+
+```yaml
+- scrollTo:
+   xPath: "/html/body/div[1]/header/div[1]/a/svg"
 ```
 
 ## License
