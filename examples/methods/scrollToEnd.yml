@@ -1,0 +1,11 @@
+version: 1
+jobs:
+  main:
+    browser:
+      headless: false
+    steps:
+      - goto: http://elpais.com
+      - scrollToEnd:
+          step: 300
+          sleep: 1000
+          max: 300000
