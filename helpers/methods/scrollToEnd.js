@@ -19,7 +19,7 @@ const schema = {
       });
     },
       params.step || 10,
-      params.max || 50000,
+      params.max || 9999999,
       params.sleep || 100);
   }
 }

@@ -108,6 +108,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
   * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
   * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
   * [scrollTo](#scrollTo) Scroll to bottom, top, x, y, selector, xPath before continuing
+  * [scrollToEnd](#scrollToEnd) Scroll's to the very bottom (infinite scroll pages)
 
 ## Overview
 
@@ -260,25 +261,6 @@ jobs:
 ## Steps
 
 Steps are the list of things the browser must do.
-
-This can be:
-
-  * [setContent](#setContent) Sets the HTML markup to assign to the page.
-  * [goto](#goto) Navigate to an URL
-  * [run](#run) Runs a group of steps by its name.
-  * [goBack](#goBack) Navigate to the previous page in history
-  * [screenshot](#screenshot) Takes an screenshot of the page
-  * [pdf](#pdf) Takes a pdf of the page
-  * [text](#text) Gets the text for a given CSS selector
-  * [many](#many) Returns an array of elements given their CSS selectors
-  * [title](#title) Gets the title for the current page.
-  * [form](#form) Fill and submit forms
-  * [html](#html) Return HTML code for the page or a DOM element
-  * [click](#click) Click on an element (CSS and xPath selectors)
-  * [url](#url) Return the current URL
-  * [type](#type) Types a text (key events) in a given selector
-  * [waitFor](#waitFor) Wait for selectors, time, functions, etc before continuing
-  * [keyboardPress](#keyboardPress) Simulates the press of a keyboard key
 
 ## setContent
 
@@ -632,6 +614,28 @@ Examples:
 ```yaml
 - scrollTo:
    xPath: "/html/body/div[1]/header/div[1]/a/svg"
+```
+
+## scrollToEnd
+
+Scroll's to the very bottom (infinite scroll pages) [example](https://github.com/joseconstela/webparsy/blob/master/examples/methods/scrollToEnd.yml)
+
+This accepts three settings:
+- **step:** how many pixels to scroll every time. Default is 10.
+- **max:** up to how many pixels as maximun you want to scroll down - so you are not waiting for decades on non-ending infinite scroll pages. Default is 9999999.
+- **sleep:** how long to wait before scrolls - in milliseconds. Defaul is 100
+
+Examples:
+
+```yaml
+- scrollToEnd
+```
+
+```yaml
+- scrollToEnd:
+    step: 300
+    sleep: 1000
+    max: 300000
 ```
 
 ## License
